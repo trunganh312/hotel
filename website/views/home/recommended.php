@@ -1,46 +1,73 @@
-  <!-- Tabs v3 -->
-  <div class="tabs-block tabs-v3">
-      <div class="container space-top-1 pb-3 mb-1">
-          <div class="w-md-80 w-lg-50 text-center mx-md-auto my-3">
-              <h2 class="section-title text-black font-size-30 font-weight-bold mb-0">
-                  Khách sạn nên thử
-              </h2>
-          </div>
-          <!-- Nav Classic -->
-          <ul class="nav tab-nav-line flex-nowrap pb-4 tab-nav justify-content-lg-center text-nowrap" role="tablist">
-              <!-- Tab các huyện tại tỉnh đó -->
-              <?php foreach ($district_popular as $index => $district) : ?>
-                  <li class="nav-item">
-                      <a class="nav-link font-weight-medium <?= $index === 0 ? 'active' : '' ?>" id="pills-<?= $district['dis_id'] ?>-tab" data-toggle="pill" href="#pills-<?= $district['dis_id'] ?>" role="tab" aria-controls="pills-<?= $district['dis_id'] ?>" aria-selected="<?= $index === 0 ? 'true' : 'false' ?>">
-                          <div class="d-flex flex-column flex-md-row position-relative text-dark align-items-center">
-                              <span class="tabtext font-weight-semi-bold"><?= $district['dis_name'] ?></span>
-                          </div>
-                      </a>
-                  </li>
-              <?php endforeach; ?>
+<!-- Tabs v3 -->
+<div class="tabs-block tabs-v3">
+    <div class="container space-top-1 pb-3 mb-1">
+        <div class="w-md-80 w-lg-50 text-center mx-md-auto my-3">
+            <h2 class="section-title text-black font-size-30 font-weight-bold mb-0">
+                Khách sạn nên thử
+            </h2>
+        </div>
 
-          </ul>
+        <!-- Nav Classic -->
+        <ul class="nav tab-nav-line flex-nowrap pb-4 tab-nav justify-content-lg-center text-nowrap" role="tablist">
+            <!-- Tab các hạng sao -->
+            <?php foreach ($star_ratings as $index => $star) : ?>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-medium <?= $index === 0 ? 'active' : '' ?>" id="pills-star-<?= $star['hot_star'] ?>-tab" data-toggle="pill" href="#pills-star-<?= $star['hot_star'] ?>" role="tab" aria-controls="pills-star-<?= $star['hot_star'] ?>" aria-selected="<?= $index === 0 ? 'true' : 'false' ?>">
+                        <div class="d-flex flex-column flex-md-row position-relative text-dark align-items-center">
+                            <span class="tabtext font-weight-semi-bold"><?= $star['hot_star'] ?> sao</span>
+                        </div>
+                    </a>
+                </li>
+            <?php endforeach; ?>
 
-          <!-- End Nav Classic -->
-          <div class="tab-content">
-              <!-- Tab content theo id huyện -->
-              <?php foreach ($district_popular as $index => $district) : ?>
-                  <div class="tab-pane fade <?= $index === 0 ? 'active show' : '' ?>" id="pills-<?= $district['dis_id'] ?>" role="tabpanel" aria-labelledby="pills-<?= $district['dis_id'] ?>-tab">
-                      <div class="row">
-                          <?php
-                            // Lấy danh sách các khách sạn thuộc huyện này từ database
-                            $hotels = $DB->query('SELECT h.*, d.dis_address_map FROM hotel h JOIN district d ON h.hot_district_id = d.dis_id WHERE h.hot_district_id = ' . $district['dis_id'])->toArray();
-                            ?>
-                          <?php foreach ($hotels as $hotel) : ?>
-                              <div class="col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-4 pb-1">
-                                  <?= itemHotel($hotel) ?>
-                              </div>
-                          <?php endforeach; ?>
-                      </div>
-                  </div>
-              <?php endforeach; ?>
-          </div>
-      </div>
-  </div>
-  </div>
-  <!-- End Tabs v3 -->
+            <!-- Tab các tiện ích -->
+            <?php foreach ($amenities as $index => $amenity) : ?>
+                <li class="nav-item">
+                    <a class="nav-link font-weight-medium" id="pills-amenity-<?= $amenity['ame_id'] ?>-tab" data-toggle="pill" href="#pills-amenity-<?= $amenity['ame_id'] ?>" role="tab" aria-controls="pills-amenity-<?= $amenity['ame_id'] ?>" aria-selected="false">
+                        <div class="d-flex flex-column flex-md-row position-relative text-dark align-items-center">
+                            <span class="tabtext font-weight-semi-bold"><?= $amenity['ame_name'] ?></span>
+                        </div>
+                    </a>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <!-- End Nav Classic -->
+
+        <div class="tab-content">
+            <!-- Tab content theo hạng sao -->
+            <?php foreach ($star_ratings as $index => $star) : ?>
+                <div class="tab-pane fade <?= $index === 0 ? 'active show' : '' ?>" id="pills-star-<?= $star['hot_star'] ?>" role="tabpanel" aria-labelledby="pills-star-<?= $star['hot_star'] ?>-tab">
+                    <div class="row">
+                        <?php
+                        // Lấy danh sách các khách sạn thuộc hạng sao này từ database
+                        $hotels = $DB->query('SELECT h.*, d.dis_address_map FROM hotel h JOIN district d ON h.hot_district_id = d.dis_id WHERE h.hot_active = 1 AND h.hot_promotion = 1 AND h.hot_star = ' . $star['hot_star'])->toArray();
+                        ?>
+                        <?php foreach ($hotels as $hotel) : ?>
+                            <div class="col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-4 pb-1">
+                                <?= itemHotel($hotel) ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+
+            <!-- Tab content theo tiện ích -->
+            <?php foreach ($amenities as $index => $amenity) : ?>
+                <div class="tab-pane fade" id="pills-amenity-<?= $amenity['ame_id'] ?>" role="tabpanel" aria-labelledby="pills-amenity-<?= $amenity['ame_id'] ?>-tab">
+                    <div class="row">
+                        <?php
+                        // Lấy danh sách các khách sạn có tiện ích này từ database
+                        $hotels = $DB->query('SELECT h.*, d.dis_address_map FROM hotel h JOIN district d ON h.hot_district_id = d.dis_id JOIN hotel_amenities ha ON h.hot_id = ha.hta_hotel_id WHERE h.hot_active = 1 AND h.hot_promotion = 1 AND ha.hta_amenity_id = ' . $amenity['ame_id'])->toArray();
+                        ?>
+                        <?php foreach ($hotels as $hotel) : ?>
+                            <div class="col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-4 pb-1">
+                                <?= itemHotel($hotel) ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<!-- End Tabs v3 -->

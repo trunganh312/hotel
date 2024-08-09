@@ -1,5 +1,5 @@
 <?
-include '../../config/require_cms.php';
+include '../../config/require_web.php';
 
 // Lấy ra danh sách quận huyện tại 1 tỉnh. VD: Tại Đà Năng là 48
 $districts   =  $DB->query("SELECT dis_name FROM district WHERE dis_city_id = " . CITY_ID)->toArray();

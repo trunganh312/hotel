@@ -5,12 +5,12 @@
        <div class="text-center space-3">
            <div class="pt-xl-2 pb-xl-5 mb-xl-1">
                <h6 class="text-gray-4 font-size-30 font-weight-bold mb-1 opacity-6">
-                   Enjoy Summer Deals
+                   Tận hưởng mùa hè
                </h6>
                <h5 class="text-white font-size-40 font-weight-bold mb-5 pb-xl-1">
-                   Up to 40% Discount!
+                   Khuyến mại lên đến 40%
                </h5>
-               <a class="btn btn-outline-white border-width-2 min-width-200 font-weight-normal transition-3d-hover" href="../blog/blog-list.html">Learn more</a>
+               <a class="btn btn-outline-white border-width-2 min-width-200 font-weight-normal transition-3d-hover" href="'.URL_VIEW.'list/index.php">Xem thêm</a>
            </div>
        </div>
    </div>

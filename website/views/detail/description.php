@@ -2,5 +2,5 @@
     <h5 id="scroll-description" class="font-size-21 font-weight-bold text-dark">
         Mô tả
     </h5>
-    <p><?= $hotel['hot_content'] ?></p>
+    <?= html_entity_decode($hotel['hot_content']) ?>
 </div>

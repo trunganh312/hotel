@@ -10,7 +10,7 @@ $urlArr = explode("/", getCurrentUrl());
 $slug = $urlArr[count($urlArr) - 1];
 
 if ($slug == 'list' || $slug == null) {
-    redirect_url('/website/views/list/index.php');
+    redirect_url('' . URL_VIEW . 'list/index.php');
 }
 ?>
 
@@ -29,6 +29,16 @@ if ($slug == 'list' || $slug == null) {
     ?>
     <!-- Content -->
     <main id="content" role="main">
+        <!-- Breadcrumbs -->
+        <?
+        $district = isset($_GET['district']) ? $_GET['district'] : 'Đà Nẵng';
+        $arrBreadcrumbs = array(
+            'Trang chủ' => '/website',
+            $district => '',
+        );
+        echo showBreadcrumbs($arrBreadcrumbs);
+        ?>
+        <!-- End Breadcrumbs -->
         <div class="container pt-5 pt-xl-8">
             <div class="row mb-5 mb-lg-8 mt-xl-1">
                 <? include('sidebar.php') ?>
@@ -50,7 +60,6 @@ if ($slug == 'list' || $slug == null) {
                 var selected = $(this).val();
                 var checkboxName = $(this).attr('name');
 
-                // Collect all selected values
                 var selectedValues = [];
                 $(`input[name^="${name}"]`).each(function() {
                     if ($(this).is(':checked')) {
@@ -59,9 +68,7 @@ if ($slug == 'list' || $slug == null) {
                 });
 
                 if (name === 'amenity') {
-                    // Remove existing parameters for `amenity`
-                    urlParams.delete(name);
-                    // Add new parameters
+                    urlParams.delete(`${name}[]`);
                     selectedValues.forEach((value, index) => {
                         urlParams.append(`${name}[]`, value);
                     });
@@ -111,6 +118,7 @@ if ($slug == 'list' || $slug == null) {
             changeSort();
         });
     </script>
+
 
 
 </body>

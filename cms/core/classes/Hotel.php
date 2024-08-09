@@ -21,7 +21,7 @@ class Hotel extends Model
         LEFT JOIN city c ON h.hot_city_id = c.cit_id
         LEFT JOIN district d ON h.hot_district_id = d.dis_id
         LEFT JOIN hotel_image img ON h.hot_id = img.hti_hotel_id
-        WHERE 1=1";
+        WHERE 1=1 ";
 
         // Áp dụng các bộ lọc
         // Escape các giá trị đầu vào để ngăn chặn SQL injection
@@ -41,7 +41,7 @@ class Hotel extends Model
         // Rating
         if (!empty($filter['rating'])) {
             $rating = intval($filter['rating']);
-            $sql .= " AND h.hot_rate = $rating";
+            $sql .= " AND h.hot_star = $rating";
         }
 
         // Kiểu KS
@@ -56,18 +56,23 @@ class Hotel extends Model
             $sql .= " AND d.dis_name = '$district'";
         }
 
-        if (!empty($filter['amenities'])) {
-            $amenityIds = array_map('intval', $filter['amenities']);
-            $amenityIdsString = implode(',', $amenityIds);
-            $sql .= " AND h.id IN (
-                    SELECT hotel_id
-                    FROM hotel_amenities
-                    WHERE amenity_id IN ($amenityIdsString)
-                    GROUP BY hotel_id
-                    HAVING COUNT(DISTINCT amenity_id) = " . count($amenityIds) . "
-                    )";
-        }
+        if (!empty($filter['amenity'])) {
+            // Escape các tên tiện ích và đưa chúng vào chuỗi
+            $amenityNames = array_map(function ($amenity) {
+                return "'" . $this->DB->escapeString($amenity) . "'";
+            }, $filter['amenity']);
 
+            $amenityNamesString = implode(',', $amenityNames);
+
+            $sql .= " AND h.hot_id IN (
+                        SELECT ha.hta_hotel_id
+                        FROM hotel_amenities ha
+                        JOIN amenity a ON ha.hta_amenity_id = a.ame_id
+                        WHERE a.ame_name IN ($amenityNamesString)
+                        GROUP BY ha.hta_hotel_id
+                        HAVING COUNT(DISTINCT a.ame_name) = " . count($filter['amenity']) . "
+                      )";
+        }
 
 
         $sql .= " GROUP BY h.hot_id, c.cit_name, d.dis_name";
@@ -130,7 +135,7 @@ class Hotel extends Model
         // Rating
         if (!empty($filter['rating'])) {
             $rating = intval($filter['rating']);
-            $sql .= " AND h.hot_rate = $rating";
+            $sql .= " AND h.hot_star = $rating";
         }
 
         // Kiểu KS
@@ -145,16 +150,22 @@ class Hotel extends Model
             $sql .= " AND d.dis_name = '$district'";
         }
 
-        if (!empty($filter['amenities'])) {
-            $amenityIds = array_map('intval', $filter['amenities']);
-            $amenityIdsString = implode(',', $amenityIds);
-            $sql .= " AND h.id IN (
-                    SELECT hotel_id
-                    FROM hotel_amenities
-                    WHERE amenity_id IN ($amenityIdsString)
-                    GROUP BY hotel_id
-                    HAVING COUNT(DISTINCT amenity_id) = " . count($amenityIds) . "
-                    )";
+        if (!empty($filter['amenity'])) {
+            // Escape các tên tiện ích và đưa chúng vào chuỗi
+            $amenityNames = array_map(function ($amenity) {
+                return "'" . $this->DB->escapeString($amenity) . "'";
+            }, $filter['amenity']);
+
+            $amenityNamesString = implode(',', $amenityNames);
+
+            $sql .= " AND h.hot_id IN (
+                        SELECT ha.hta_hotel_id
+                        FROM hotel_amenities ha
+                        JOIN amenity a ON ha.hta_amenity_id = a.ame_id
+                        WHERE a.ame_name IN ($amenityNamesString)
+                        GROUP BY ha.hta_hotel_id
+                        HAVING COUNT(DISTINCT a.ame_name) = " . count($filter['amenity']) . "
+                      )";
         }
 
         // Thực hiện câu lệnh truy vấn
@@ -219,5 +230,41 @@ class Hotel extends Model
         $this->DB->query($sql);
 
         return $this->DB->toArray();
+    }
+
+    // Lấy ra danh sách phòng 
+    public function getRooms($hotelId)
+    {
+        $sql = "SELECT *
+                FROM room
+                WHERE roo_hotel_id = $hotelId";
+
+        $this->DB->query($sql);
+        return $this->DB->toArray();
+    }
+
+    // Lấy ra chi tiết phòng
+    public function getRoomDetail($roomId)
+    {
+        $sql = "SELECT *
+                FROM room
+                WHERE roo_id = $roomId";
+
+        $this->DB->query($sql);
+        return $this->DB->getOne();
+    }
+
+    // Lấy dánh sách khách sạn theo city id
+    public function getHotelsByCity($cityId)
+    {
+        $sql = "SELECT h.*,
+        c.cit_name,
+        d.dis_name,d.dis_address_map
+        FROM hotel h
+        LEFT JOIN city c ON h.hot_city_id = c.cit_id
+        LEFT JOIN district d ON h.hot_district_id = d.dis_id
+        WHERE 1=1 AND h.hot_city_id =" . $cityId;
+        $hotels = $this->DB->query($sql)->toArray();
+        return $hotels;
     }
 }

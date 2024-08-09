@@ -100,9 +100,7 @@ if ($Query->submitForm()) {
     <?= $Form->closeForm() ?>
     <?
     $Layout->footer();
-    ?><?
-        $Layout->loadMapInit();
-        ?>
+    ?>
     <?
     $Layout->loadMapInit();
     ?>

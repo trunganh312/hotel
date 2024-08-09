@@ -13,7 +13,7 @@
             <!-- Search Jobs Form -->
             <div class="card border-0 tab-shadow">
                 <div class="card-body">
-                    <form class="js-validate" action="/website/views/list/index.php">
+                    <form class="js-validate" action="<?= URL_VIEW ?>list/index.php">
                         <div class="row d-block nav-select d-lg-flex mb-lg-3 px-2 px-lg-3">
                             <div class="col-sm-12 col-lg-3dot6 col-xl-9dot5 mb-4 mb-lg-0">
                                 <span class="d-block text-gray-1 font-weight-normal text-left mb-0">Khách sạn</span>

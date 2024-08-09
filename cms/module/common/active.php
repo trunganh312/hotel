@@ -26,6 +26,10 @@ switch ($arr_fields[0]) {
         $table = 'district';
         $field_id = 'dis_id';
         break;
+    case 'roo':
+        $table = 'room';
+        $field_id = 'roo_id';
+        break;
     default:
         exit('Invalid field');
 }

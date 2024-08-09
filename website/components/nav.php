@@ -66,7 +66,7 @@ foreach ($hotelsByGroupDistrict as $hotel) {
                             <ul class="u-header__sub-menu-nav-group u-header__sub-menu-bordered mb-3">
                                 <? foreach ($groupedHotels[$key] as $item) : ?>
                                     <li class="single-line">
-                                        <a class="nav-link u-header__sub-menu-nav-link" href="/website/views/detail/<?= $item['hot_slug'] ?>"><?= $item['hot_name'] ?></a>
+                                        <a class="nav-link u-header__sub-menu-nav-link" href="'.URL_VIEW.'detail/<?= $item['hot_slug'] ?>"><?= $item['hot_name'] ?></a>
                                     </li>
                                 <? endforeach; ?>
                             </ul>

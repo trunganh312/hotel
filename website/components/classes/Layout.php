@@ -16,7 +16,7 @@ class Layout
    */
   function __construct()
   {
-    $this->path_theme   =   $_SERVER['DOCUMENT_ROOT']  . 'cityvisit/website/public/';
+    $this->path_theme   =   base_url_web()  . 'cityvisit/website/public/';
   }
 
   // Load header
@@ -34,27 +34,28 @@ class Layout
             <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
      
             <!-- CSS Implementing Plugins -->
-            <link rel="stylesheet" href="/website/public/vendor/font-awesome/css/fontawesome-all.min.css" />
-            <link rel="stylesheet" href="/website/public/css/font-mytravel.css" />
-            <link rel="stylesheet" href="/website/public/vendor/animate.css/animate.min.css" />
-            <link rel="stylesheet" href="/website/public/vendor/hs-megamenu/src/hs.megamenu.css" />
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/vendor/font-awesome/css/fontawesome-all.min.css" />
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/css/font-mytravel.css" />
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/vendor/animate.css/animate.min.css" />
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/vendor/hs-megamenu/src/hs.megamenu.css" />
             <link
             rel="stylesheet"
-            href="/website/public/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"
+            href="' . base_url_web() . 'cityvisit/website/public/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"
             />
-            <link rel="stylesheet" href="/website/public/vendor/fancybox/jquery.fancybox.css"/>
-            <link rel="stylesheet" href="/website/public/vendor/flatpickr/dist/flatpickr.min.css" />
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/vendor/fancybox/jquery.fancybox.css"/>
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/vendor/flatpickr/dist/flatpickr.min.css" />
             <link
             rel="stylesheet"
-            href="/website/public/vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
+            href="' . base_url_web() . 'cityvisit/website/public/vendor/bootstrap-select/dist/css/bootstrap-select.min.css"
             />
-            <link rel="stylesheet" href="/website/public/vendor/slick-carousel/slick/slick.css" />
-            <link rel="stylesheet" href="/website/public/vendor/dzsparallaxer/dzsparallaxer.css" />
-            <link rel="stylesheet" href="/website/public/vendor/ion-rangeslider/css/ion.rangeSlider.css" />
-            <link rel="stylesheet" href="/website/public/vendor/custombox/dist/custombox.min.css" />
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/vendor/slick-carousel/slick/slick.css" />
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/vendor/dzsparallaxer/dzsparallaxer.css" />
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/vendor/ion-rangeslider/css/ion.rangeSlider.css" />
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/vendor/custombox/dist/custombox.min.css" />
             
             <!-- CSS MyTravel Template -->
-            <link rel="stylesheet" href="/website/public/css/theme.css" />
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/css/theme.css" />
+            <link rel="stylesheet" href="' . base_url_web() . 'cityvisit/website/public/css/star-rating.css" />
             <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.5.1/uicons-regular-straight/css/uicons-regular-straight.css">
             <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/2.5.1/uicons-regular-rounded/css/uicons-regular-rounded.css">
 
@@ -92,6 +93,7 @@ class Layout
   {
     include($_SERVER['DOCUMENT_ROOT'] . '/website/components/footer.php');
     echo $this->loadScriptFooter();
+    echo '<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDIfSyryL0vRpxCCDilpmgnYhC98A_E8EQ&callback=initializeMap&libraries=places&v=weekly" defer></script>';
   }
 
   // Load script footer
@@ -99,45 +101,48 @@ class Layout
   {
     $script =  '
         <!-- JS Global Compulsory -->
-        <script src="/website/public/vendor/jquery/dist/jquery.min.js"></script>
-        <script src="/website/public/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
-        <script src="/website/public/vendor/popper.js/dist/umd/popper.min.js"></script>
-        <script src="/website/public/vendor/bootstrap/bootstrap.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/popper.js/dist/umd/popper.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/bootstrap/bootstrap.min.js"></script>
 
         <!-- JS Implementing Plugins -->
-        <script src="/website/public/vendor/gmaps/gmaps.min.js"></script>
-        <script src="/website/public/vendor/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
-        <script src="/website/public/vendor/custombox/dist/custombox.min.js"></script>
-        <script src="/website/public/vendor/custombox/dist/custombox.legacy.min.js"></script>
-        <script src="/website/public/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-        <script src="/website/public/vendor/hs-megamenu/src/hs.megamenu.js"></script>
-        <script src="/website/public/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="/website/public/vendor/flatpickr/dist/flatpickr.min.js"></script>
-        <script src="/website/public/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-        <script src="/website/public/vendor/slick-carousel/slick/slick.js"></script>
-        <script src="/website/public/vendor/dzsparallaxer/dzsparallaxer.js"></script>
-        <script src="/website/public/vendor/fancybox/jquery.fancybox.min.js"></script>
-        <script src="/website/public/vendor/appear.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/gmaps/gmaps.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/custombox/dist/custombox.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/custombox/dist/custombox.legacy.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/flatpickr/dist/flatpickr.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/slick-carousel/slick/slick.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/dzsparallaxer/dzsparallaxer.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/fancybox/jquery.fancybox.min.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/vendor/appear.js"></script>
 
         <!-- JS MyTravel -->
-        <script src="/website/public/js/hs.core.js"></script>
-        <script src="/website/public/js/components/hs.header.js"></script>
-        <script src="/website/public/js/components/hs.unfold.js"></script>
-        <script src="/website/public/js/components/hs.validation.js"></script>
-        <script src="/website/public/js/components/hs.show-animation.js"></script>
-        <script src="/website/public/js/components/hs.range-datepicker.js"></script>
-        <script src="/website/public/js/components/hs.selectpicker.js"></script>
-        <script src="/website/public/js/components/hs.go-to.js"></script>
-        <script src="/website/public/js/components/hs.slick-carousel.js"></script>
-        <script src="/website/public/js/components/hs.quantity-counter.js"></script>
-        <script src="/website/public/js/components/hs.range-slider.js"></script>
-        <script src="/website/public/js/components/hs.g-map.js"></script>
-        <script src="/website/public/js/components/hs.modal-window.js"></script>
-        <script src="/website/public/js/components/hs.malihu-scrollbar.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/hs.core.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/ggmap.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/api.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/star-rating.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.header.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.unfold.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.validation.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.show-animation.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.range-datepicker.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.selectpicker.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.go-to.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.slick-carousel.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.quantity-counter.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.range-slider.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.g-map.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.modal-window.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.malihu-scrollbar.js"></script>
 
-        <script src="/website/public/js/components/hs.fancybox.js"></script>
-        <script src="/website/public/js/components/hs.scroll-nav.js"></script>
-        <script src="/website/public/js/components/hs.sticky-block.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.fancybox.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.scroll-nav.js"></script>
+        <script src="' . base_url_web() . 'cityvisit/website/public/js/components/hs.sticky-block.js"></script>
 
         <!-- JS Plugins Init. -->
         <script>
@@ -197,7 +202,20 @@ class Layout
         // initialization of go to
         $.HSCore.components.HSGoTo.init(".js-go-to");
       });
-        </script>';
+        </script>
+        ';
     return $script;
+  }
+
+  // Load map init in website
+  function loadMapInit($hotels = [], $hotel = null)
+  {
+    echo '<script>
+        // Khởi tạo map
+        async function initializeMap() {
+            await initMap(' . $hotels . ', ' . $hotel . ');
+        }
+        initializeMap();
+    </script>';
   }
 }

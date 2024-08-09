@@ -60,7 +60,7 @@ class Layout
         global  $cfg_theme_version_css;
         global  $cfg_website;
 
-        $css    =   ['all', 'daterangepicker', 'summernote', 'thickbox', 'select2', 'select2-bootstrap4.min', 'toastr', 'adminlte', 'table', 'style', 'font', 'waitMe.min', 'jquery-ui', 'jquery-autocomplete', 'jquery.uploader'];
+        $css    =   ['all', 'daterangepicker', 'summernote', 'thickbox', 'select2', 'select2-bootstrap4.min', 'toastr', 'adminlte', 'table', 'style', 'font', 'waitMe.min', 'jquery-ui', 'jquery-autocomplete', 'jquery.uploader', 'quill'];
 
         $head   =  '<title>' . $title . '</title>
                     <meta charset="UTF-8" />
@@ -162,7 +162,7 @@ class Layout
 
         $js =   [
             'jquery', 'jquery-ui', 'bootstrap', 'jeditable', 'moment', 'inputmask', 'daterangepicker', 'countdown', 'summernote', 'select2', 'toastr', 'customfile',
-            'adminlte', 'thickbox', 'jquery-autocomplete', 'table', 'main', 'waitMe.min', 'upload', 'previewImage', 'jquery.uploader.min'
+            'adminlte', 'thickbox', 'jquery-autocomplete', 'table', 'main', 'waitMe.min', 'upload', 'previewImage', 'jquery.uploader.min', 'slug', 'quill'
         ];
 
         $footer =   '';
@@ -252,8 +252,7 @@ class Layout
     function loadCkeditor()
     {
         $js_paths = [
-            "ckeditor/ckeditor.js",
-            "ckfinder/ckfinder.js",
+            // "ckeditor/ckeditor.js",
             "ckeditor/init.js",
             "ggmap/map.js"
         ];

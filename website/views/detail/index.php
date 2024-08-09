@@ -17,6 +17,14 @@ include('config_module.php');
     ?>
     <!-- Content -->
     <main id="content">
+        <?
+        $arrBreadcrumbs = array(
+            'Trang chủ' => '/website',
+            $hotel['dis_name'] => '' . URL_VIEW . 'list/index.php?district=' . $hotel['dis_name'],
+            $hotel['hot_name'] => ''
+        );
+        echo showBreadcrumbs($arrBreadcrumbs);
+        ?>
         <div class="container mt-4">
             <div class="row">
                 <div class="col-lg-8 col-xl-9">
@@ -41,31 +49,16 @@ include('config_module.php');
                                 <h4 class="font-size-23 font-weight-bold mb-1"><?= $hotel['hot_name'] ?></h4>
                                 <div class="ml-3 font-size-10 letter-spacing-2">
                                     <span class="d-block green-lighter ml-1">
-                                        <?= star($hotel['hot_rate']) ?>
+                                        <?= star($hotel['hot_star']) ?>
                                     </span>
                                 </div>
                             </div>
                             <div class="d-block d-md-flex flex-horizontal-center font-size-14 text-gray-1">
                                 <i class="icon flaticon-placeholder mr-2 font-size-20"></i>
                                 <?= $hotel['hot_address_map'] ?>
-                                <a href="#" class="ml-1 d-block d-md-inline"> - View on map</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xl-3">
-                    <div class="mb-4">
-                        <div class="flex-center-between">
-                            <div class="flex-horizontal-center mr-2">
-                                <div class="badge-primary rounded-xs px-1">
-                                    <span class="badge font-size-19 px-2 py-2 mb-0 text-lh-inherit"><?= $hotel['hot_rate'] ?> /5 </span>
-                                </div>
-
-                                <div class="ml-2 text-lh-1">
-                                    <div class="ml-1">
-                                        <span class="text-gray-1 font-size-14">(1,186 Reviews)</span>
-                                    </div>
-                                </div>
+                                <a href="#ontargetModal" data-modal-target="#ontargetModal" data-modal-effect="fadein">
+                                    <span class="text-primary font-size-14"> - Xem bản đồ</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -74,14 +67,14 @@ include('config_module.php');
                 <div class="col-lg-4 col-xl-3">
                     <div class="border border-color-7 rounded px-4 pt-4 pb-3 mb-5">
                         <div class="px-2 pt-2">
-                            <a href="https://goo.gl/maps/kCVqYkjHX3XvoC4B9" class="d-inline-block border rounded mb-4 overflow-hidden">
-                                <img class="img-fluid" src="/website/public/img/240x170/img1.jpg" alt="Image-Description">
+                            <a class="d-inline-block border rounded mb-4 overflow-hidden">
+                                <img class="img-fluid" src="/uploads/hotel_cover/<?= $hotel['hot_page_cover'] ?>" alt="Image-Description">
                             </a>
                             <div class="d-flex align-items-center mb-2">
                                 <i class="flaticon-placeholder-1 font-size-25 text-primary mr-3 pr-1"></i>
                                 <h6 class="mb-0 font-size-14 text-gray-1">
                                     <a href="#">Khách sạn tốt nhất tại </a>
-                                    <a href="/website/views/list/index.php?district=<?= $hotel['dis_name'] ?>" class="text-primary"><?= $hotel['dis_name'] ?></a>
+                                    <a href="<?= URL_VIEW ?>list/index.php?district=<?= $hotel['dis_name'] ?>" class="text-primary"><?= $hotel['dis_name'] ?></a>
                                 </h6>
                             </div>
                             <div class="d-flex align-items-center mb-2">
@@ -113,9 +106,13 @@ include('config_module.php');
             <? include('near.php') ?>
         </div>
     </main>
+
+    <!-- Map -->
+    <? include('map.php') ?>
     <?=
     $Layout->loadfooter();
     ?>
+
 </body>
 
 </html>

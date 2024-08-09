@@ -40,10 +40,17 @@ class HotelController
             $filter['district'] = $_GET['district'];
         }
 
+        // Lọc theo ID tiện nghi
+        if (!empty($_GET['amenity'])) {
+            $filter['amenity'] =  $_GET['amenity'];
+        }
+
         // Lấy sort từ query string
         if (!empty($_GET['sort'])) {
             $sort = $_GET['sort'];
         }
+
+
 
         // Xử lý các tham số phân trang
         $page       = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -76,6 +83,20 @@ class HotelController
     public function getNearbyHotels($district_id)
     {
         $hotels = $this->hotelModel->getNearbyHotels($district_id);
+        return $hotels;
+    }
+
+    // GET ROOMS
+    public function getRooms($hotel_id)
+    {
+        $rooms = $this->hotelModel->getRooms($hotel_id);
+        return $rooms;
+    }
+
+    // Get list hotel by city id
+    public function getHotelsByCityId($city_id)
+    {
+        $hotels = $this->hotelModel->getHotelsByCity($city_id);
         return $hotels;
     }
 }

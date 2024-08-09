@@ -168,12 +168,12 @@ function itemHotel($hotel)
 {
     $html = '<div class="card transition-3d-hover shadow-hover-2 h-100 w-100">
                         <div class="position-relative">
-                            <a href="/website/views/detail/' . $hotel['hot_slug'] . '" class="d-block gradient-overlay-half-bg-gradient-v5">
+                            <a href="' . URL_VIEW . 'detail/' . $hotel['hot_slug'] . '" class="d-block gradient-overlay-half-bg-gradient-v5">
                                 <img class="card-img-top" src="/uploads/hotel_cover/' . $hotel['hot_page_cover'] . '" alt="Image Description" />
                             </a>
                             <div class="position-absolute bottom-0 left-0 right-0">
                                 <div class="px-4 pb-3">
-                                    <a href="/website/views/detail/' . $hotel['hot_slug'] . '" class="d-block" >
+                                    <a href="' . URL_VIEW . 'detail/' . $hotel['hot_slug'] . '" class="d-block" >
                                         <div class="d-flex align-items-center font-size-14 text-white">
                                             <i class="icon flaticon-placeholder mr-2 font-size-20"></i>
                                             ' . $hotel['dis_address_map'] . '
@@ -187,15 +187,15 @@ function itemHotel($hotel)
                             <div class="mb-2">
                                 <div class="d-inline-flex align-items-center font-size-13 text-lh-1 text-primary letter-spacing-3">
                                     <div class="green-lighter"
-                                    ' . star($hotel['hot_rate']) . '
+                                    ' . star($hotel['hot_star'] + 1) . '
                                     </div>
                                 </div>
                             </div>
                             <div style="flex: 1">
-                            <a href="/website/views/detail/' . $hotel['hot_slug'] . '" class="card-title font-size-17 font-weight-medium text-dark">' . $hotel['hot_name'] . '</a>
+                            <a href="' . URL_VIEW . 'detail/' . $hotel['hot_slug'] . '" class="card-title font-size-17 font-weight-medium text-dark">' . $hotel['hot_name'] . '</a>
                             </div>
                             <div class="mt-2 mb-3">
-                                <span class="badge badge-pill badge-primary py-1 px-2 font-size-14 border-radius-3 font-weight-normal">' . $hotel['hot_rate'] . '/5</span>
+                                <span class="badge badge-pill badge-primary py-1 px-2 font-size-14 border-radius-3 font-weight-normal">' . $hotel['hot_star'] . '/5</span>
                                  <span class="font-size-14 text-gray-1 ml-2">(166 reviews)</span>
                             </div>
                             <div class="mb-2">
@@ -204,50 +204,50 @@ function itemHotel($hotel)
                                 <span class="font-size-14 text-gray-1"> / đêm</span>
                             </div>
                              <div class="mb-0 w-100">
-                                <a href="#" class="btn btn-primary p-1 w-100">Đặt phòng</a>
+                                <a href="' . URL_VIEW . 'detail/' . $hotel['hot_slug'] . '" class="btn btn-primary p-1 w-100">Xem thêm</a>
                             </div>
                         </div>
                     </div>';
     return $html;
 }
 
-// Fake review
-function fakeReview()
+//  review
+function review($averages)
 {
-    $fakeReview = array(
-        0 => array(
-            'rate' => 9.8,
+    $reviews = array(
+        array(
+            'rate' => $averages['rev_cleanliness'],
             'category' => 'Sạch sẽ',
-            'range' => '98%'
+            'range' => round($averages['rev_cleanliness'] / 5 * 100) . '%'
         ),
-        1 => array(
-            'rate' => 9.5,
+        array(
+            'rate' => $averages['rev_amenities'],
             'category' => 'Tiện ích',
-            'range' => '95%'
+            'range' => round($averages['rev_amenities'] / 5 * 100) . '%'
         ),
-        2 => array(
-            'rate' => 9.2,
+        array(
+            'rate' => $averages['rev_money'],
             'category' => 'Giá cả',
-            'range' => '92%'
+            'range' => round($averages['rev_money'] / 5 * 100) . '%'
         ),
-        3 => array(
-            'rate' => 9.7,
+        array(
+            'rate' => $averages['rev_service'],
             'category' => 'Dịch vụ',
-            'range' => '97%'
+            'range' => round($averages['rev_service'] / 5 * 100) . '%'
         ),
-        4 => array(
-            'rate' => 9.9,
+        array(
+            'rate' => $averages['rev_customer_support'],
             'category' => 'Chăm sóc khách hàng',
-            'range' => '99%'
+            'range' => round($averages['rev_customer_support'] / 5 * 100) . '%'
         ),
-        5 => array(
-            'rate' => 9.4,
+        array(
+            'rate' => $averages['rev_location'],
             'category' => 'Vị trí',
-            'range' => '94%'
+            'range' => round($averages['rev_location'] / 5 * 100) . '%'
         ),
     );
     $html = '';
-    foreach ($fakeReview as $review) {
+    foreach ($reviews as $review) {
         $html .= '<div class="col-md-6 mb-4">
                     <h6 class="font-weight-normal text-gray-1 mb-1">
                         ' . $review['category'] . '
@@ -263,4 +263,125 @@ function fakeReview()
                 </div>';
     }
     return $html;
+}
+
+// Base url
+function base_url_web()
+{
+    return sprintf(
+        "%s://%s/",
+        isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
+        $_SERVER['SERVER_NAME']
+    );
+}
+
+// Show breadcrumbs
+function showBreadcrumbs($arrBreadcrumbs = [])
+{
+    $html = '<div class="border-bottom">
+    <div class="container">
+        <nav class="py-3" aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-no-gutter mb-0 flex-nowrap flex-xl-wrap overflow-auto overflow-xl-visble">';
+    foreach ($arrBreadcrumbs as $key => $item) {
+        $html .= '<li class="breadcrumb-item flex-shrink-0 flex-xl-shrink-1"><a href="' . $item . '">
+            ' . $key . '
+        </a></li>';
+    }
+
+    $html .= "</ol>
+                </nav>
+            </div>
+        </div>";
+
+    return $html;
+}
+
+// Show gallary
+// Truyền vào mảng ảnh
+function showGallary($images, $folder)
+{
+    $html = '<div class="row mx-n1" >
+                        <!-- Hiển thị 1 cái ảnh đầu tiên của mảng -->
+                        <div class="col-lg-8 col-xl-9 mb-1 mb-lg-0 px-0 px-lg-1" style="max-height: 470px">
+                            <a style=" height: 100%;" class="js-fancybox u-media-viewer h-100" href="javascript:;" data-src="/uploads/' . $folder . '/' . $images[0] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh #1" data-speed="700">
+                                <img style="width: 100%; height: 100%;" class="img-fluid border-radius-3 min-height-458" src="/uploads/' . $folder . '/' . $images[0] . '" alt="Image Description">
+                                <span class="u-media-viewer__container">
+                                    <span class="u-media-viewer__icon">
+                                        <span class="fas fa-plus u-media-viewer__icon-inner"></span>
+                                    </span>
+                                </span>
+                            </a>
+                        </div>
+                        <div class="col-lg-4 col-xl-3 px-0">
+                            <div class="d-flex" style="justify-content: space-around;flex-direction: column;gap: 10px;">
+                            <!-- Show 3 ảnh nhỏ vị trí 1,2,3 -->
+                            <!-- Ảnh thứ 2 -->
+                            <a class="js-fancybox u-media-viewer pb-1" href="javascript:;" data-src="/uploads/' . $folder . '/' . $images[1] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh   #2" data-speed="700">
+                                <img class="img-fluid border-radius-3 min-height-150 w-100" src="/uploads/' . $folder . '/' . $images[1] . '" alt="Image Description">
+                                <span class="u-media-viewer__container">
+                                    <span class="u-media-viewer__icon">
+                                        <span class="fas fa-plus u-media-viewer__icon-inner"></span>
+                                    </span>
+                                </span>
+                            </a>
+                            <!-- Ảnh thứ 3 -->
+                            <a class="js-fancybox u-media-viewer pb-1" href="javascript:;" data-src="/uploads/' . $folder . '/' . $images[2] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh   #3" data-speed="700">
+                                <img class="img-fluid border-radius-3 min-height-150" src="/uploads/' . $folder . '/' . $images[2] . '" alt="Image Description">
+
+                                <span class="u-media-viewer__container">
+                                    <span class="u-media-viewer__icon">
+                                        <span class="fas fa-plus u-media-viewer__icon-inner"></span>
+                                    </span>
+                                </span>
+                            </a>
+                            <!-- Ảnh thứ 4 -->
+                            <a class="js-fancybox u-media-viewer u-media-viewer__dark" href="javascript:;" data-src="/uploads/' . $folder . '/' . $images[3] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh   #4" data-speed="700">
+                                <img class="img-fluid border-radius-3 min-height-150" src="/uploads/' . $folder . '/' . $images[3] . '" alt="Image Description">
+
+                                <span class="u-media-viewer__container z-index-2 w-100">
+                                    <span class="u-media-viewer__icon u-media-viewer__icon--active w-100  bg-transparent">
+                                        <span class="u-media-viewer__icon-inner font-size-14">SEE ALL PHOTOS</span>
+                                    </span>
+                                </span>
+                            </a></div>';
+
+    //     Show ảnh còn lại trong mảng 
+    //    Bỏ đi 4 phần tử đầu tiên trong mảng ảnh 
+    for ($i = 4; $i < count($images); $i++) {
+        $html .= '<img class="js-fancybox d-none" alt="Image Description" data-fancybox="fancyboxGallery6" data-src="/uploads/' . $folder . '/' . $images[$i] . '" data-caption="Ảnh   #' . $i . '" data-speed="700">';
+    }
+
+    $html .= '</div>
+                </div>
+            ';
+
+    return $html;
+}
+
+// Show name tab content
+function showNameTab($number)
+{
+    $html = '';
+    if ($number == TYPE_ROOM) {
+        $html = 'Phòng';
+    } elseif ($number == TYPE_EAT) {
+        $html = 'Ăn uống';
+    } elseif ($number == TYPE_NEAR) {
+        $html = 'Khu vực lân cận';
+    } elseif ($number == TYPE_SWIM) {
+        $html = 'Bơi';
+    } elseif ($number == TYPE_HOTEL) {
+        $html = 'Khách sạn';
+    } elseif ($number == TYPE_AMENITY) {
+        $html = 'Tiện ích';
+    } else {
+        $html = 'Khác';
+    }
+    return $html;
+}
+
+// Tính trung bình 
+function calculateAverage($arr)
+{
+    return round(array_sum($arr) / count($arr), 1);
 }

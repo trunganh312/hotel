@@ -92,9 +92,10 @@ $Table->addSQL($sql_query);
     <?= $Table->closeTable(); ?>
     <?
     $Layout->footer();
-    ?><?
-        $Layout->loadMapInit();
-        ?>
+    ?>
+    <?
+    $Layout->loadMapInit();
+    ?>
 </body>
 
 </html>

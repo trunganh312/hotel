@@ -44,12 +44,14 @@ $imageJson = json_encode($images);
     <?
     $Layout->header($page_title);
     ?>
+    <a href="/cms/module/hotel/list.php" class="ml-2">Quay lại</a>
     <div class="container">
         <ul>
             <?=
             $Layout->loadRoomType();
             ?>
         </ul>
+
     </div>
     <?
     $Layout->loadFooter();
@@ -67,7 +69,6 @@ $imageJson = json_encode($images);
         let ajaxConfig = {
             ajaxRequester: function(config, uploadFile, pCall, sCall, eCall) {
                 let formData = new FormData();
-                console.log(config);
                 formData.append('file', uploadFile.file);
                 formData.append('id', uploadFile.id);
                 formData.append('type', uploadFile.type_image);

@@ -34,9 +34,11 @@ $config['authentication'] = function () {
 /*============================ License Key ============================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = CKEDITOR_USER;
-$config['licenseKey']  = CKEDITOR_PASSWORD;
+// $config['licenseName'] = CKEDITOR_USER;
+// $config['licenseKey']  = CKEDITOR_PASSWORD;
 
+$config['licenseName'] = '';
+$config['licenseKey']  = '';
 /*============================ CKFinder Internal Directory ============================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_privateDir
 
@@ -68,12 +70,13 @@ $config['images'] = array(
 $config['backends'][] = array(
     'name'         => 'default',
     'adapter'      => 'local',
-    'baseUrl'      => DOMAIN_IMAGE,
-    'root'         => $_SERVER['DOCUMENT_ROOT'] .'/image/', // Can be used to explicitly set the CKFinder user files directory.
+    // 'baseUrl'      => DOMAIN_IMAGE,
+    'baseUrl'      => 'http://localhost/TestCkeditor/upload/',
+    // 'root'         => $_SERVER['DOCUMENT_ROOT'] . '/image/', // Can be used to explicitly set the CKFinder user files directory.
     'chmodFiles'   => 0777,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8',
-    'followSymlinks'=> true
+    'followSymlinks' => true
 );
 
 /*================================ Resource Types =====================================*/

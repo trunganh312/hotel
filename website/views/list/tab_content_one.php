@@ -9,9 +9,9 @@
                                 <div class="position-relative">
                                     <div class="js-slick-carousel u-slick u-slick--equal-height " data-slides-show="1" data-slides-scroll="1" data-arrows-classes="d-none d-lg-inline-block u-slick__arrow-classic v4 u-slick__arrow-classic--v4 u-slick__arrow-centered--y rounded-circle" data-arrow-left-classes="flaticon-back u-slick__arrow-classic-inner u-slick__arrow-classic-inner--left" data-arrow-right-classes="flaticon-next u-slick__arrow-classic-inner u-slick__arrow-classic-inner--right" data-pagi-classes="js-pagination text-center u-slick__pagination u-slick__pagination--white position-absolute right-0 bottom-0 left-0 mb-3 mb-0">
                                         <? $images = json_decode($hotel['images'], true) ?>
-                                        <? foreach ($images as $image) : ?>
+                                        <? foreach ($images as $index => $image) : ?>
                                             <div class="js-slide">
-                                                <a href="/website/views/detail/<?= $hotel['hot_slug'] ?>" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="/uploads/hotel_images/<?= $image ?>"></a>
+                                                <a href="<?= URL_VIEW  ?>detail/<?= $hotel['hot_slug'] ?>" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-230 card-img-top" src="/uploads/hotel_images/<?= $image ?>"></a>
                                             </div>
                                         <? endforeach; ?>
                                     </div>
@@ -23,16 +23,18 @@
                                 <div class="my-1 pb-1">
                                     <?= $hotel['hot_hot'] == 1 ? '<span class="badge badge-orange text-white rounded-xs font-size-13 py-1 p-xl-2">Hot</span>' : '' ?>
                                     <span class="green-lighter ml-2">
-                                        <?= star($hotel['hot_rate']) ?>
+                                        <?= star($hotel['hot_star']) ?>
                                     </span>
                                 </div>
-                                <a href="/website/views/detail/<?= $hotel['hot_slug'] ?>">
+                                <a href="<?= URL_VIEW ?>detail/<?= $hotel['hot_slug'] ?>">
                                     <span class="font-weight-medium font-size-17 text-dark d-flex mb-1"><?= $hotel['hot_name'] ?></span>
                                 </a>
                                 <div class="card-body p-0">
                                     <div class="text-gray-1 mb-2">
                                         <i class="fi fi-rs-map-marker font-size-20 mr-2"></i>
-                                        <span class="text-primary font-size-14">Xem bản đồ</span>
+                                        <a href="#ontargetModal" data-modal-target="#ontargetModal" data-modal-effect="fadein">
+                                            <span class="text-primary font-size-14">Xem bản đồ</span>
+                                        </a>
                                     </div>
 
                                     <div class="text-gray-1 mb-2">
@@ -52,8 +54,8 @@
                                     <div class="mb-0">
                                         <div class="my-xl-1">
                                             <div class="d-flex align-items-center justify-content-xl-end mb-2">
-                                                <span class="badge badge-primary rounded-xs font-size-14 p-2 mr-2 mb-0"><?= $hotel['hot_rate'] ?> /5 </span>
-                                                <span class="font-size-17 font-weight-bold text-primary">Very Good</span>
+                                                <span class="badge badge-primary rounded-xs font-size-14 p-2 mr-2 mb-0"><?= $hotel['hot_star'] ?> /5 </span>
+                                                <span class="font-size-17 font-weight-bold text-primary">Đánh giá tốt</span>
                                             </div>
                                         </div>
                                         <!-- <span class="font-size-14 text-gray-1">(1,186 Reviews)</span> -->
@@ -64,7 +66,7 @@
                                     <span class="font-weight-bold"><?= formatVND($hotel['hot_price']) ?>₫</span>
                                     <span class="font-size-14 text-gray-1"> / đêm</span>
                                 </div>
-                                <a href="" class="btn btn-primary p-2 w-100 mt-2 ml-wd-2 ml-xl-2">Đặt ngay</a>
+                                <a href="<?= URL_VIEW ?>detail/<?= $hotel['hot_slug'] ?>" class="btn btn-primary p-2 w-100 mt-2 ml-wd-2 ml-xl-2">Xem thêm</a>
                             </div>
                         </div>
                     </div>

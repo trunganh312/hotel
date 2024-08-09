@@ -45917,3 +45917,8 @@ Letter Spacing
   text-overflow: ellipsis; /* Hiển thị "..." khi văn bản vượt quá kích thước */
   width: 100%; /* Hoặc đặt chiều rộng cụ thể nếu cần */
 }
+
+/* Map  */
+.gm-style-iw-d {
+  max-width: 320px !important;
+}

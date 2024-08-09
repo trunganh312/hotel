@@ -21,7 +21,7 @@ $Table->column('hot_name_other', 'Tên khác', TAB_TEXT, true);
 $Table->column('cit_name', 'Thành phố', TAB_TEXT, true);
 $Table->column('dis_name', 'Quận/huyện', TAB_TEXT, true);
 $Table->column('hot_price', 'Giá', TAB_TEXT, false, true);
-$Table->column('hot_rate', 'Rate', TAB_SELECT, false, true);
+$Table->column('hot_star', 'Hạng sao', TAB_SELECT, false, true);
 $Table->column('hot_promotion', 'Khuyến mại', TAB_CHECKBOX, false, true);
 $Table->column('hot_hot', 'Hot', TAB_CHECKBOX, false, true);
 
@@ -32,10 +32,6 @@ if ($has_edit && $has_delete) {
     $Table->addED(true, true);
 }
 
-// Lấy ra value search
-$cit_name = getValue('cit_name', GET_STRING);
-$dis_name = getValue('dis_name', GET_STRING);
-
 // Câu lệnh lấy ra hotel
 $sql_query = "SELECT h.*, 
                 c.cit_name,
@@ -44,16 +40,6 @@ $sql_query = "SELECT h.*,
                 LEFT JOIN city c ON h.hot_city_id = c.cit_id
                 LEFT JOIN district d ON h.hot_district_id = d.dis_id
                 WHERE 1=1";
-
-// Thêm điều kiện search cho thành phố
-if (!empty($cit_name)) {
-    $sql_query .= " AND c.cit_name LIKE '%" . $cit_name . "%'";
-}
-
-// Thêm điều kiện search cho quận huyện
-if (!empty($dis_name)) {
-    $sql_query .= " AND d.dis_name LIKE '%" . $dis_name . "%'";
-}
 
 // Câu lệnh lấy ra khách sạn
 $Table->addSQL($sql_query);
@@ -93,7 +79,7 @@ $Table->addSQL($sql_query);
         echo    $Table->showFieldText('cit_name');
         echo    $Table->showFieldText('dis_name');
         echo    $Table->showFieldVND('hot_price');
-        echo    $Table->showFieldText('hot_rate');
+        echo    $Table->showFieldText('hot_star');
         echo    $Table->showFieldCheckbox('hot_promotion');
         echo    $Table->showFieldCheckbox('hot_hot');
         ?>

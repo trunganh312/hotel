@@ -1,6 +1,6 @@
 <?
-include '../website/config/require_cms.php';
+include '../website/config/require_web.php';
 ?>
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/website/views/home/home.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '' . URL_VIEW . 'home/home.php');
 ?>

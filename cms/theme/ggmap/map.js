@@ -3,7 +3,6 @@ let map;
 let infoWindow;
 
 async function initMap(lat, lng) {
-  console.log(lat);
   // Request needed libraries.
   const myLatlng = {
     lat: lat || 21.0277644,
