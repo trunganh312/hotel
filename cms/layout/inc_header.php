@@ -16,11 +16,11 @@ global  $DB, $Admin, $cfg_path_theme_image;
                 <span><?= $Admin->name ?></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-                <a href="/cms/module/admin/profile.php" class="dropdown-item">
+                <a href="/module/admin/profile.php" class="dropdown-item">
                     <i class="fas fa-user-circle"></i> Trang cá nhân
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="/cms/logout.php" class="dropdown-item">
+                <a href="/logout.php" class="dropdown-item">
                     <i class="fas fa-sign-out-alt"></i> Thoát
                 </a>
             </div>
@@ -166,7 +166,7 @@ global  $DB, $Admin, $cfg_path_theme_image;
                                                     if ($Admin->isSuperAdmin() || (isset($arr_module[$row['mod_id']]) && in_array($m['modf_file'], $arr_module[$row['mod_id']]))) {
                                                 ?>
                                                         <li class="nav-item">
-                                                            <a href="/cms/module/<?= $row['mod_folder'] ?>/<?= $m['modf_file'] ?>" class="nav-link <?= ($m['modf_file'] == $file_feature_active ? 'active' : '') ?>">
+                                                            <a href="/module/<?= $row['mod_folder'] ?>/<?= $m['modf_file'] ?>" class="nav-link <?= ($m['modf_file'] == $file_feature_active ? 'active' : '') ?>">
                                                                 <p><i class="fas fa-long-arrow-alt-right dot_bull"></i><?= $m['modf_name'] ?></p>
                                                             </a>
                                                         </li>
@@ -187,7 +187,7 @@ global  $DB, $Admin, $cfg_path_theme_image;
                                         }
                                     ?>
                                         <li class="nav-item">
-                                            <a href="/cms/module/<?= $row['mod_folder'] ?>/<?= $row_child['modf_file'] ?>" class="nav-link <?= ($is_open ? 'active' : '') ?>">
+                                            <a href="/module/<?= $row['mod_folder'] ?>/<?= $row_child['modf_file'] ?>" class="nav-link <?= ($is_open ? 'active' : '') ?>">
                                                 <p><i class="fas fa-caret-right dot_bull"></i><?= $row_child['modf_name'] ?></p>
                                             </a>
                                         </li>

@@ -1,21 +1,7 @@
 <?
-global  $DB;
-// Lấy ra 4 huyện có ks nổi tiếng
-$hotelsByGroupDistrict = $DB->query("SELECT h.*, d.dis_name FROM hotel h 
-    LEFT JOIN district d on h.hot_district_id = d.dis_id
- WHERE hot_city_id = 48 AND h.hot_active = 1 AND h.hot_hot = 1")->toArray();
-$groupedHotels = array();
-
-foreach ($hotelsByGroupDistrict as $hotel) {
-    $districtId = $hotel['dis_name'];
-    if (!isset($groupedHotels[$districtId])) {
-        $groupedHotels[$districtId] = array();
-    }
-    $groupedHotels[$districtId][] = $hotel;
-}
+include('inc_header.php');
 
 ?>
-
 <!-- ========== FOOTER ========== -->
 <footer class="footer border-top border-gray-33 pt-4">
     <div class="space-bottom-2 space-top-1">
@@ -26,7 +12,7 @@ foreach ($hotelsByGroupDistrict as $hotel) {
                     <div class="d-md-flex d-lg-block">
                         <div class="mb-5 mr-md-7 mr-lg-0">
                             <h4 class="h6 mb-4 font-weight-bold">Liên hệ với chúng tôi</h4>
-                            <a href="tel:(888)-1234-56789">
+                            <a href="tel:<?= $config['con_hotline']  ?>">
                                 <div class="d-flex align-items-center">
                                     <div class="mr-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="40px" height="40px">
@@ -35,7 +21,7 @@ foreach ($hotelsByGroupDistrict as $hotel) {
                                     </div>
                                     <div>
                                         <small class="d-block font-size-18 font-weight-normal text-primary">Hotline:
-                                            <span class="text-primary font-weight-semi-bold">0353106446</span></small>
+                                            <span class="text-primary font-weight-semi-bold"><?= $config['con_hotline']  ?></span></small>
                                     </div>
                                 </div>
                             </a>
@@ -45,7 +31,7 @@ foreach ($hotelsByGroupDistrict as $hotel) {
                                 <h4 class="h6 font-weight-bold mb-2 font-size-17">Thông tin liên hệ</h4>
                                 <address class="pr-4">
                                     <span class="mb-2 h6 font-weight-normal text-gray-1">
-                                        Số 18-B4, Ngách 61/67 Phùng Khoang, Phường Trung Văn, Quận Nam Từ Liêm, Thành Phố Hà Nội, Việt Nam.
+                                        <?= $config['con_address']  ?>
                                     </span>
                                 </address>
                             </div>
@@ -60,7 +46,7 @@ foreach ($hotelsByGroupDistrict as $hotel) {
                         <ul class="list-group list-group-flush list-group-borderless mb-0">
                             <? foreach ($groupedHotels[$key] as $item) : ?>
                                 <li>
-                                    <a class="text-decoration-on-hover list-group-item list-group-item-action" href="'.URL_VIEW.'detail/<?= $item['hot_slug'] ?>"><?= $item['hot_name'] ?></a>
+                                    <a class="text-decoration-on-hover list-group-item list-group-item-action" href="<?= returnDomain(['hotel', $item['hot_slug']]) ?>"><?= $item['hot_name'] ?></a>
                                 </li>
                             <? endforeach; ?>
                         </ul>

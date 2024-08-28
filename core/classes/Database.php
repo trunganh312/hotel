@@ -360,6 +360,6 @@ class Database
 
     public function escapeString($string)
     {
-        return mysqli_real_escape_string($this->con, $string);
+        return @mysqli_real_escape_string($this->con, $string);
     }
 }

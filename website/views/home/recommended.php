@@ -40,7 +40,7 @@
                     <div class="row">
                         <?php
                         // Lấy danh sách các khách sạn thuộc hạng sao này từ database
-                        $hotels = $DB->query('SELECT h.*, d.dis_address_map FROM hotel h JOIN district d ON h.hot_district_id = d.dis_id WHERE h.hot_active = 1 AND h.hot_promotion = 1 AND h.hot_star = ' . $star['hot_star'])->toArray();
+                        $hotels = $HotelController->getHotelsByStar($star['hot_star']);
                         ?>
                         <?php foreach ($hotels as $hotel) : ?>
                             <div class="col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-4 pb-1">
@@ -57,7 +57,7 @@
                     <div class="row">
                         <?php
                         // Lấy danh sách các khách sạn có tiện ích này từ database
-                        $hotels = $DB->query('SELECT h.*, d.dis_address_map FROM hotel h JOIN district d ON h.hot_district_id = d.dis_id JOIN hotel_amenities ha ON h.hot_id = ha.hta_hotel_id WHERE h.hot_active = 1 AND h.hot_promotion = 1 AND ha.hta_amenity_id = ' . $amenity['ame_id'])->toArray();
+                        $hotels = $HotelController->getHotelsByAmenity($amenity['ame_id']);
                         ?>
                         <?php foreach ($hotels as $hotel) : ?>
                             <div class="col-md-6 col-lg-4 col-xl-3 mb-3 mb-md-4 pb-1">

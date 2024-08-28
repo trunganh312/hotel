@@ -136,7 +136,7 @@ if ($Query->submitForm()) {
     <div id="previewImageBanner">
         <? if ($roo_cover) {
             echo '<div class="col-md-5 mb-3 position-relative" style="height: 200px; width: 200px;">
-                <img src="/uploads/room_cover/' . $roo_cover . '" class="img-fluid" style="object-fit: cover; height: 100%;">
+                <img src="' . DOMAIN_UPLOADS . '/room_cover/' . $roo_cover . '" class="img-fluid" style="object-fit: cover; height: 100%;">
                 </div>';
         } ?>
     </div>

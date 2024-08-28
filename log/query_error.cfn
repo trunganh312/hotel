@@ -1,4 +1,4 @@
-09/06/2023 08:56:09 tqa.local/cms/
+09/06/2023 08:56:09 tqa.local/
 IP:127.0.0.1
 File: D:\xampp\htdocs\Outsource\TQA\core\config\config_core.php
 
@@ -7,7 +7,7 @@ No database selected
 SELECT * FROM configuration WHERE con_id = 1
 
 ---------------------------------------------------------------------------
-09/06/2023 09:44:36 tqa.local/cms/
+09/06/2023 09:44:36 tqa.local/
 IP:127.0.0.1
 File: D:\xampp\htdocs\Outsource\TQA\cms\layout\inc_header.php
 
@@ -20,7 +20,7 @@ SELECT per_file, per_module_id
                                         WHERE per_active = 1 AND per_file <> '' AND aga_admin_id = 1
 
 ---------------------------------------------------------------------------
-09/06/2023 09:44:38 tqa.local/cms/
+09/06/2023 09:44:38 tqa.local/
 IP:127.0.0.1
 File: D:\xampp\htdocs\Outsource\TQA\cms\layout\inc_header.php
 
@@ -33,7 +33,7 @@ SELECT per_file, per_module_id
                                         WHERE per_active = 1 AND per_file <> '' AND aga_admin_id = 1
 
 ---------------------------------------------------------------------------
-09/06/2023 09:46:26 tqa.local/cms/
+09/06/2023 09:46:26 tqa.local/
 IP:127.0.0.1
 File: D:\xampp\htdocs\Outsource\TQA\cms\layout\inc_header.php
 
@@ -46,7 +46,7 @@ SELECT per_file, per_module_id
                                         WHERE per_active = 1 AND per_file <> '' AND aga_admin_id = 1
 
 ---------------------------------------------------------------------------
-09/06/2023 09:46:27 tqa.local/cms/
+09/06/2023 09:46:27 tqa.local/
 IP:127.0.0.1
 File: D:\xampp\htdocs\Outsource\TQA\cms\layout\inc_header.php
 

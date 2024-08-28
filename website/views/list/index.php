@@ -1,17 +1,5 @@
 <?
 include_once('config_module.php');
-require_once __DIR__ . '/../../controllers/HotelController.php';
-
-$HotelController = new HotelController($DB);
-
-// Lấy ra đường link hiện tại để lấy slug của hotel
-$urlArr = explode("/", getCurrentUrl());
-
-$slug = $urlArr[count($urlArr) - 1];
-
-if ($slug == 'list' || $slug == null) {
-    redirect_url('' . URL_VIEW . 'list/index.php');
-}
 ?>
 
 <!DOCTYPE html>
@@ -31,9 +19,9 @@ if ($slug == 'list' || $slug == null) {
     <main id="content" role="main">
         <!-- Breadcrumbs -->
         <?
-        $district = isset($_GET['district']) ? $_GET['district'] : 'Đà Nẵng';
+        $district = isset($_GET['district']) && !empty($_GET['district']) ? $_GET['district'] : 'Đà Nẵng';
         $arrBreadcrumbs = array(
-            'Trang chủ' => '/website',
+            'Trang chủ' => '/',
             $district => '',
         );
         echo showBreadcrumbs($arrBreadcrumbs);

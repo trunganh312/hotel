@@ -21,9 +21,9 @@ include_once('config_module.php');
         <!-- Breadcrumbs -->
         <?
         $arrBreadcrumbs = array(
-            'Trang chủ' => '/website',
-            'Danh sách khách sạn' => '' . URL_VIEW . 'list',
-            $room['hot_name'] => '' . URL_VIEW . 'detail/' . $room['hot_slug'],
+            'Trang chủ' => '/',
+            'Danh sách khách sạn' => returnUrlCity(),
+            $room['hot_name'] =>  returnDomain(['hotel', $room['hot_slug']])
         );
         echo showBreadcrumbs($arrBreadcrumbs);
         ?>

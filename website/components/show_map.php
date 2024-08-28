@@ -53,11 +53,11 @@
                                                 <div class="col-md-6">
                                                     <div class="product-item__header">
                                                         <div class="position-relative">
-                                                            <a target="_blank" href="'.URL_VIEW.'detail/<?= $hotel['hot_slug'] ?>" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-150 card-img-top" src="/uploads/hotel_cover/<?= $hotel['hot_page_cover'] ?>" /></a>
+                                                            <a target="_blank" href="<?= returnDomain(['hotel', $item['hot_slug']])  ?>" class="d-block gradient-overlay-half-bg-gradient-v5"><img class="img-fluid min-height-150 card-img-top" src="<?= DOMAIN_UPLOADS ?>/hotel_cover/<?= $hotel['hot_page_cover'] ?>" /></a>
                                                         </div>
                                                         <div class="position-absolute bottom-0 left-0 right-0">
                                                             <div class="px-4 pb-3">
-                                                                <a target="_blank" href="'.URL_VIEW.'detail/<?= $hotel['hot_slug'] ?>" class="d-block">
+                                                                <a target="_blank" href="<?= returnDomain(['hotel', $item['hot_slug']])  ?>" class="d-block">
                                                                     <div class="d-flex align-items-center font-size-14 text-white">
                                                                         <i class="icon flaticon-pin-1 mr-2 font-size-20"></i>
                                                                         <?= $hotel['dis_address_map'] ?>
@@ -75,7 +75,7 @@
                                                             </span>
                                                         </div>
                                                         <div style="flex: 1">
-                                                            <a target="_blank" href="'.URL_VIEW.'detail/<?= $hotel['hot_slug'] ?>" class="card-title font-size-17 font-weight-medium text-dark"><?= $hotel['hot_name']  ?></a>
+                                                            <a target="_blank" href="<?= returnDomain(['hotel', $hotel['hot_slug']])  ?>" class="card-title font-size-17 font-weight-medium text-dark"><?= $hotel['hot_name']  ?></a>
                                                         </div>
                                                         <div class="card-body p-0">
                                                             <div class="my-2">
@@ -132,7 +132,7 @@
     // Hàm gọi API với cả hai tham số
     function fetchData() {
         // Tạo URL với cả hai tham số
-        let url = '/website/ajax/preview_map.php?';
+        let url = '/ajax/preview_map.php?';
         if (currentStarRating) {
             url += 'star=' + encodeURIComponent(currentStarRating) + '&';
         }
@@ -163,7 +163,7 @@
                                 <div class="product-item__header">
                                     <div class="position-relative">
                                         <a target="_blank" href="/hotel/${hotel.hot_slug}" class="d-block gradient-overlay-half-bg-gradient-v5">
-                                            <img class="img-fluid min-height-150 card-img-top" src="/uploads/hotel_cover/${hotel.hot_page_cover}" />
+                                            <img class="img-fluid min-height-150 card-img-top" src="<?= DOMAIN_UPLOADS ?>/hotel_cover/${hotel.hot_page_cover}" />
                                         </a>
                                     </div>
                                     <div class="position-absolute bottom-0 left-0 right-0">

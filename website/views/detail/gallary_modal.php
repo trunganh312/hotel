@@ -37,8 +37,8 @@
                                     <?php foreach ($group['images'] as $image) : ?>
                                         <?php if (is_array($image)) : ?>
                                             <div class="col-lg-3 col-md-4 col-6">
-                                                <a class="js-fancybox u-media-viewer pb-1" href="javascript:;" data-src="/uploads/hotel_images/<?= $image['hti_name'] ?>" data-fancybox="fancyboxGallery" data-speed="700">
-                                                    <img class="img-fluid img-thumbnail border-radius-3 min-height-150 w-100" src="/uploads/hotel_images/<?= $image['hti_name'] ?>" alt="Image Description">
+                                                <a class="js-fancybox u-media-viewer pb-1" href="javascript:;" data-src="<?= DOMAIN_UPLOADS ?>/hotel_images/<?= $image['hti_name'] ?>" data-fancybox="fancyboxGallery" data-speed="700">
+                                                    <img class="img-fluid img-thumbnail border-radius-3 min-height-150 w-100" src="<?= DOMAIN_UPLOADS ?>/hotel_images/<?= $image['hti_name'] ?>" alt="Image Description">
                                                     <span class="u-media-viewer__container">
                                                         <span class="u-media-viewer__icon">
                                                             <span class="fas fa-plus u-media-viewer__icon-inner"></span>
@@ -60,8 +60,8 @@
                             <div class="row">
                                 <?php foreach ($group['images'] as $image) : ?>
                                     <div class="col-lg-3 col-md-4 col-6">
-                                        <a class="js-fancybox u-media-viewer pb-1" href="javascript:;" data-src="/uploads/hotel_images/<?= $image['hti_name']  ?>" data-fancybox="fancyboxGallery<?= $key ?>" data-speed="700">
-                                            <img class="img-fluid border-radius-3 img-thumbnail" src="/uploads/hotel_images/<?= $image['hti_name']  ?>" alt="Image Description">
+                                        <a class="js-fancybox u-media-viewer pb-1" href="javascript:;" data-src="<?= DOMAIN_UPLOADS ?>/hotel_images/<?= $image['hti_name']  ?>" data-fancybox="fancyboxGallery<?= $key ?>" data-speed="700">
+                                            <img class="img-fluid border-radius-3 img-thumbnail" src="<?= DOMAIN_UPLOADS ?>/hotel_images/<?= $image['hti_name']  ?>" alt="Image Description">
                                             <span class="u-media-viewer__container">
                                                 <span class="u-media-viewer__icon">
                                                     <span class="fas fa-plus u-media-viewer__icon-inner"></span>

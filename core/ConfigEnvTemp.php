@@ -1,4 +1,5 @@
 <?
+
 /**
  * Các thông số của Environment
  */
@@ -15,12 +16,10 @@ define('ENV_DB_SLOW_QUERY', 0.1);
 
 /** --- Domain --- **/
 define('DOMAIN_WEB', 'http://website.local');    //Ko có / ở cuối
-define('DOMAIN_CMS', 'http://website.local/cms');    //Ko có / ở cuối
+define('DOMAIN_CMS', 'http://website.local');    //Ko có / ở cuối
 define('WEBSITE_NAME', 'Website.com');
 
 /** --- Email dùng cho class Mailer --- **/
 define('MAILER_USERNAME', 'email@gmail.com');
 define('MAILER_PASSWORD', 'password');
 define('MAILER_DEV_TEST', 'email_dev@gmail.com');
-
-?>

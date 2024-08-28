@@ -2,11 +2,10 @@
 include_once('../../config/require_web.php');
 
 // Lấy ra thông tin chi tiết theo room id
-
 $roomId = isset($_GET['room_id']) ? $_GET['room_id'] : null;
 
 if (!isset($roomId)) {
-    redirect_url('' . URL_VIEW . 'list');
+    redirect_url('' . DOMAIN_WEB_VIEW . 'list');
     exit();
 }
 

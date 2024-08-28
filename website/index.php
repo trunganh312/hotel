@@ -1,6 +1,6 @@
 <?
+// Bao gồm tệp cấu hình
 include '../website/config/require_web.php';
-?>
-<?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '' . URL_VIEW . 'home/home.php');
-?>
+
+// Bao gồm tệp home.php sử dụng biến đường dẫn
+require_once($path_website_view . "home/home.php");

@@ -1,17 +1,21 @@
 <?
+// Lấy ra tên khách sạn theo id
+$city = $DB->query("SELECT cit_name,cit_id FROM city WHERE cit_id = " . CITY_ID)->getOne();
+
+// Lưu tên thành phố vào để tạo slug dạng: DOMAIN/{CITY_ID}-slug(cit_name).html
+$_SESSION['city_name'] = to_slug($city['cit_name']);
+$_SESSION['city_id'] = $city['cit_id'];
+
 // Lấy ra 10 hotel phổ biến nhất và được phép hiển thị thuộc 1 tỉnh
 // VD Đà Nẵng -> cit_id = 48
-$hotel_popular = $DB->query('SELECT h.*, d.dis_address_map
-            FROM hotel h
-            JOIN district d ON h.hot_district_id = d.dis_id
-            WHERE h.hot_hot = 1 AND h.hot_active = 1 AND  h.hot_page_cover IS NOT NULL AND h.hot_city_id = ' . CITY_ID . '
-            LIMIT 10')->toArray();
+$hotel_popular = $HotelController->getPopularHotels(CITY_ID);
 
 // Lấy ra 6 huyện phổ biến nhất của tỉnh đó và lấy ra số hotel thuộc huyện đó
 // ví dụ : Đà Nẵng
-$district_popular = $DB->query('SELECT d.*, COUNT(h.hot_id) AS hotel_count
+$district_popular = $DB->query('SELECT d.*, c.cit_name, c.cit_id, COUNT(h.hot_id) AS hotel_count
 FROM district d
 LEFT JOIN hotel h ON d.dis_id = h.hot_district_id
+LEFT JOIN city c ON d.dis_city_id = c.cit_id
 WHERE d.dis_city_id = ' . CITY_ID . '
 GROUP BY d.dis_id, d.dis_name
 LIMIT 6')->toArray();

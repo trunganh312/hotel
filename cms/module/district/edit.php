@@ -106,7 +106,7 @@ if ($Query->submitForm()) {
     <div id="previewImageBanner" class="row text-center overflow-hidden" style="gap: 30px;">
         <? if ($dis_page_cover) {
             echo '<div class="col-md-5 mb-3 position-relative" style="height: 200px; width: 200px;">
-                <img src="/uploads/district/' . $dis_page_cover . '" class="img-fluid" style="object-fit: cover; height: 100%;">
+                <img src="' . DOMAIN_UPLOADS . '/district/' . $dis_page_cover . '" class="img-fluid" style="object-fit: cover; height: 100%;">
                 </div>';
         } ?>
     </div>
@@ -114,7 +114,7 @@ if ($Query->submitForm()) {
     <div id="previewImageDistrict" class="row text-center overflow-hidden" style="gap: 30px;">
         <? if ($dis_image) {
             echo '<div class="col-md-5 mb-3 position-relative" style="height: 200px; width: 200px;">
-                <img src="/uploads/district_cover/' . $dis_image . '" class="img-fluid" style="object-fit: cover; height: 100%;">
+                <img src="' . DOMAIN_UPLOADS . '/district_cover/' . $dis_image . '" class="img-fluid" style="object-fit: cover; height: 100%;">
                 </div>';
         } ?>
     </div>

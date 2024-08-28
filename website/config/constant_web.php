@@ -11,10 +11,6 @@ define('CITY_ID', 48);
 //     )
 // );
 
-
-// Link url 
-define('URL_VIEW', '/website/views/');
-
 // Reviews
 
 $review_data = array(
@@ -25,3 +21,28 @@ $review_data = array(
     'support' => 'Chăm sóc khách hàng',
     'location' => 'Vị trí',
 );
+
+// Type data
+$type_data = [
+    'Khách sạn'             =>  'Khách sạn',
+    'Resort'                =>  'Resort',
+    'Homestay'              =>  'Homestay',
+    'Villa'                 =>  'Villa',
+    'Khu nghỉ dưỡng'        =>  'Khu nghỉ dưỡng',
+    'Du thuyền'             =>  'Du thuyền',
+    'Ecofarm'               =>  'Ecofarm',
+    'Căn hộ'                =>  'Căn hộ',
+    'Tổ hợp du lịch'        =>  'Tổ hợp du lịch',
+];
+
+/** --- Loại ảnh hotel --- **/
+define('TYPE_ROOM', 1);
+define('TYPE_HOTEL', 2);
+define('TYPE_AMENITY', 3);
+define('TYPE_EAT', 4);
+define('TYPE_SWIM', 5);
+define('TYPE_OTHER', 6);
+define('TYPE_NEAR', 7);
+
+// Domain
+define('DOMAIN_WEB_VIEW', 'http://cityvisit.local/views/');

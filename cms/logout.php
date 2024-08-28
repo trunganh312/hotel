@@ -3,8 +3,8 @@ ob_start();
 session_start();
 
 $path_root      =   $_SERVER['DOCUMENT_ROOT'];
-$path_core      =   $path_root . '/core/';
-$path_cms       =   $path_root . '/cms/';
+$path_core      =    dirname($path_root, 1) . '/core/';
+$path_cms       =   $path_root . '/';
 
 require_once($path_core . 'env/ConfigEnv.php');
 require_once($path_core . 'config/constant_core.php');
@@ -19,4 +19,3 @@ require_once($path_cms . 'core/classes/Admin.php');
 $Admin  =   new Admin;
 
 $Admin->logout($path_cms . 'login.php');
-?>

@@ -15,7 +15,7 @@
                         <div class="pt-5 pb-md-5 pl-4 pr-4 pl-md-5 pr-md-2 pr-xl-2">
                             <div class="product-item__header mt-2 mt-md-0">
                                 <div class="position-relative">
-                                    <img class="img-fluid rounded-sm" src="/uploads/room_cover/<?= $room['roo_cover'] ?>" alt="<?= $room['roo_name'] ?>">
+                                    <img class="img-fluid rounded-sm" src="<?= DOMAIN_UPLOADS ?>/room_cover/<?= $room['roo_cover'] ?>" alt="<?= $room['roo_name'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -82,7 +82,7 @@
                                 <div class="mb-2 pb-1">
                                     <span class="font-weight-bold font-size-22 ml-1"><?= formatVND($room['roo_price']) ?>₫/ đêm</span>
                                 </div>
-                                <a href="<?= URL_VIEW ?>booking/index.php?room_id=<?= $room['roo_id']  ?>" class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Đặt ngay</a>
+                                <a href="<?= DOMAIN_WEB_VIEW ?>booking/index.php?room_id=<?= $room['roo_id']  ?>" class="btn btn-outline-primary border-radius-3 border-width-2 px-4 font-weight-bold min-width-200 py-2 text-lh-lg">Đặt ngay</a>
                             </div>
                         </div>
                     </div>

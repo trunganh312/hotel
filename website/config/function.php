@@ -1,5 +1,6 @@
 <?
 
+
 function formatVND($price)
 {
     $formattedAmount = number_format($price, 0, ',', ',');
@@ -10,16 +11,16 @@ function formatVND($price)
 // Chỉ dùng cho các huyện phổ biến trang chủ
 function itemLarge($item)
 {
-    $url = getCurrentUrl();
+    $url = returnUrlCity();
     $html = '<div class="col-md-6 mb-3 mb-md-4">
-                            <div class="min-height-350 bg-img-hero rounded-border p-5 gradient-overlay-half-bg-gradient transition-3d-hover shadow-hover-2" style="background-image: url(/uploads/district_cover/' . $item['dis_image'] . ')">
+                            <div class="min-height-350 bg-img-hero rounded-border p-5 gradient-overlay-half-bg-gradient transition-3d-hover shadow-hover-2" style="background-image: url(' . DOMAIN_UPLOADS . '/district_cover/' . $item['dis_image'] . ')">
                             <header class="w-100 d-flex justify-content-between mb-3">
                             <div>
                                 <div class="destination pb-3 text-lh-1">
-                                    <a href="' . $url . '/views/list/index.php?district=' . $item['dis_name'] . '" class="text-white font-weight-bold font-size-21">' . $item['dis_name'] . '</a>
+                                    <a href="' . $url . '?district=' . $item['dis_name'] . '" class="text-white font-weight-bold font-size-21">' . $item['dis_name'] . '</a>
                                 </div>
                                 <div class="mt-1 pt-1">
-                                    <a href="' . $url . '/views/list/index.php?district=' . $item['dis_name'] . '" class="text-white">' . $item['hotel_count'] . ' Hotel</a>
+                                    <a href="' . $url . '?district=' . $item['dis_name'] . '" class="text-white">' . $item['hotel_count'] . ' Hotel</a>
                                 </div>
                             </div>
                         </header>
@@ -33,16 +34,16 @@ function itemLarge($item)
 
 function itemSmall($item)
 {
-    $url = getCurrentUrl();
+    $url = returnUrlCity();
     $html = '<div class="col-md-6 col-xl-3 mb-3 mb-md-4 pb-1">
-                <div class="min-height-350 bg-img-hero rounded-border p-5 gradient-overlay-half-bg-gradient transition-3d-hover shadow-hover-2" style="background-image: url(/uploads/district_cover/' . $item['dis_image'] . ')">
+                <div class="min-height-350 bg-img-hero rounded-border p-5 gradient-overlay-half-bg-gradient transition-3d-hover shadow-hover-2" style="background-image: url(' . DOMAIN_UPLOADS . '/district_cover/' . $item['dis_image'] . ')">
                     <header class="w-100 d-flex justify-content-between mb-3">
                         <div>
                             <div class="destination pb-3 text-lh-1">
-                                <a href="' . $url . '/views/list/index.php?district=' . $item['dis_name'] . '" class="text-white font-weight-bold font-size-21">' . $item['dis_name'] . '</a>
+                                <a href="' . $url . '?district=' . $item['dis_name'] . '" class="text-white font-weight-bold font-size-21">' . $item['dis_name'] . '</a>
                             </div>
                             <div class="mt-1 pt-1">
-                                <a href="' . $url . '/views/list/index.php?district=' . $item['dis_name'] . '" class="text-white">' . $item['hotel_count'] . ' Hotel</a>
+                                <a href="' . $url . '?district=' . $item['dis_name'] . '" class="text-white">' . $item['hotel_count'] . ' Hotel</a>
                             </div>
                         </div>
                     </header>
@@ -168,12 +169,12 @@ function itemHotel($hotel)
 {
     $html = '<div class="card transition-3d-hover shadow-hover-2 h-100 w-100">
                         <div class="position-relative">
-                            <a href="' . URL_VIEW . 'detail/' . $hotel['hot_slug'] . '" class="d-block gradient-overlay-half-bg-gradient-v5">
-                                <img class="card-img-top" src="/uploads/hotel_cover/' . $hotel['hot_page_cover'] . '" alt="Image Description" />
+                            <a href="' . returnDomain(['hotel', $hotel['hot_slug']]) . '" class="d-block gradient-overlay-half-bg-gradient-v5">
+                                <img class="card-img-top" src="' . DOMAIN_UPLOADS . '/hotel_cover/' . $hotel['hot_page_cover'] . '" alt="Image Description" />
                             </a>
                             <div class="position-absolute bottom-0 left-0 right-0">
                                 <div class="px-4 pb-3">
-                                    <a href="' . URL_VIEW . 'detail/' . $hotel['hot_slug'] . '" class="d-block" >
+                                    <a href="' . returnDomain(['hotel', $hotel['hot_slug']]) . '" class="d-block" >
                                         <div class="d-flex align-items-center font-size-14 text-white">
                                             <i class="icon flaticon-placeholder mr-2 font-size-20"></i>
                                             ' . $hotel['dis_address_map'] . '
@@ -192,19 +193,22 @@ function itemHotel($hotel)
                                 </div>
                             </div>
                             <div style="flex: 1">
-                            <a href="' . URL_VIEW . 'detail/' . $hotel['hot_slug'] . '" class="card-title font-size-17 font-weight-medium text-dark">' . $hotel['hot_name'] . '</a>
-                            </div>
-                            <div class="mt-2 mb-3">
-                                <span class="badge badge-pill badge-primary py-1 px-2 font-size-14 border-radius-3 font-weight-normal">' . $hotel['hot_star'] . '/5</span>
-                                 <span class="font-size-14 text-gray-1 ml-2">(166 reviews)</span>
-                            </div>
-                            <div class="mb-2">
+                            <a href="' . returnDomain(['hotel', $hotel['hot_slug']]) . '" class="card-title font-size-17 font-weight-medium text-dark">' . $hotel['hot_name'] . '</a>
+                            </div>';
+    if ($hotel['total_reviews'] > 0) {
+        $html .= ' <div class="mt-2 mb-3">
+                                <span class="badge badge-pill badge-primary py-1 px-2 font-size-14 border-radius-3 font-weight-normal">' . $hotel['average_rating'] . '/5</span>
+                                 <span class="font-size-14 text-gray-1 ml-2">(' . $hotel['total_reviews'] . ' đánh giá)</span>
+                            </div>';
+    }
+
+    $html .= '<div class="mb-2">
                                 <span class="mr-1 font-size-14 text-gray-1">Chỉ từ</span>
                                 <span class="font-weight-bold">' . formatVND($hotel['hot_price']) . 'VNĐ</span>
                                 <span class="font-size-14 text-gray-1"> / đêm</span>
                             </div>
                              <div class="mb-0 w-100">
-                                <a href="' . URL_VIEW . 'detail/' . $hotel['hot_slug'] . '" class="btn btn-primary p-1 w-100">Xem thêm</a>
+                                <a href="' . returnDomain(['hotel', $hotel['hot_slug']]) . '" class="btn btn-primary p-1 w-100">Xem thêm</a>
                             </div>
                         </div>
                     </div>';
@@ -303,8 +307,8 @@ function showGallary($images, $folder)
     $html = '<div class="row mx-n1" >
                         <!-- Hiển thị 1 cái ảnh đầu tiên của mảng -->
                         <div class="col-lg-8 col-xl-9 mb-1 mb-lg-0 px-0 px-lg-1" style="max-height: 470px">
-                            <a style=" height: 100%;" class="js-fancybox u-media-viewer h-100" href="javascript:;" data-src="/uploads/' . $folder . '/' . $images[0] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh #1" data-speed="700">
-                                <img style="width: 100%; height: 100%;" class="img-fluid border-radius-3 min-height-458" src="/uploads/' . $folder . '/' . $images[0] . '" alt="Image Description">
+                            <a style=" height: 100%;" class="js-fancybox u-media-viewer h-100" href="javascript:;" data-src="' . DOMAIN_UPLOADS . '/' . $folder . '/' . $images[0] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh #1" data-speed="700">
+                                <img style="width: 100%; height: 100%;" class="img-fluid border-radius-3 min-height-458" src="' . DOMAIN_UPLOADS . '/' . $folder . '/' . $images[0] . '" alt="Image Description">
                                 <span class="u-media-viewer__container">
                                     <span class="u-media-viewer__icon">
                                         <span class="fas fa-plus u-media-viewer__icon-inner"></span>
@@ -316,8 +320,8 @@ function showGallary($images, $folder)
                             <div class="d-flex" style="justify-content: space-around;flex-direction: column;gap: 10px;">
                             <!-- Show 3 ảnh nhỏ vị trí 1,2,3 -->
                             <!-- Ảnh thứ 2 -->
-                            <a class="js-fancybox u-media-viewer pb-1" href="javascript:;" data-src="/uploads/' . $folder . '/' . $images[1] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh   #2" data-speed="700">
-                                <img class="img-fluid border-radius-3 min-height-150 w-100" src="/uploads/' . $folder . '/' . $images[1] . '" alt="Image Description">
+                            <a class="js-fancybox u-media-viewer pb-1" href="javascript:;" data-src="' . DOMAIN_UPLOADS . '/' . $folder . '/' . $images[1] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh   #2" data-speed="700">
+                                <img class="img-fluid border-radius-3 min-height-150 w-100" src="' . DOMAIN_UPLOADS . '/' . $folder . '/' . $images[1] . '" alt="Image Description">
                                 <span class="u-media-viewer__container">
                                     <span class="u-media-viewer__icon">
                                         <span class="fas fa-plus u-media-viewer__icon-inner"></span>
@@ -325,8 +329,8 @@ function showGallary($images, $folder)
                                 </span>
                             </a>
                             <!-- Ảnh thứ 3 -->
-                            <a class="js-fancybox u-media-viewer pb-1" href="javascript:;" data-src="/uploads/' . $folder . '/' . $images[2] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh   #3" data-speed="700">
-                                <img class="img-fluid border-radius-3 min-height-150" src="/uploads/' . $folder . '/' . $images[2] . '" alt="Image Description">
+                            <a class="js-fancybox u-media-viewer pb-1" href="javascript:;" data-src="' . DOMAIN_UPLOADS . '/' . $folder . '/' . $images[2] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh   #3" data-speed="700">
+                                <img class="img-fluid border-radius-3 min-height-150" src="' . DOMAIN_UPLOADS . '/' . $folder . '/' . $images[2] . '" alt="Image Description">
 
                                 <span class="u-media-viewer__container">
                                     <span class="u-media-viewer__icon">
@@ -335,8 +339,8 @@ function showGallary($images, $folder)
                                 </span>
                             </a>
                             <!-- Ảnh thứ 4 -->
-                            <a class="js-fancybox u-media-viewer u-media-viewer__dark" href="javascript:;" data-src="/uploads/' . $folder . '/' . $images[3] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh   #4" data-speed="700">
-                                <img class="img-fluid border-radius-3 min-height-150" src="/uploads/' . $folder . '/' . $images[3] . '" alt="Image Description">
+                            <a class="js-fancybox u-media-viewer u-media-viewer__dark" href="javascript:;" data-src="' . DOMAIN_UPLOADS . '/' . $folder . '/' . $images[3] . '" data-fancybox="fancyboxGallery6" data-caption="Ảnh   #4" data-speed="700">
+                                <img class="img-fluid border-radius-3 min-height-150" src="' . DOMAIN_UPLOADS . '/' . $folder . '/' . $images[3] . '" alt="Image Description">
 
                                 <span class="u-media-viewer__container z-index-2 w-100">
                                     <span class="u-media-viewer__icon u-media-viewer__icon--active w-100  bg-transparent">
@@ -348,7 +352,7 @@ function showGallary($images, $folder)
     //     Show ảnh còn lại trong mảng 
     //    Bỏ đi 4 phần tử đầu tiên trong mảng ảnh 
     for ($i = 4; $i < count($images); $i++) {
-        $html .= '<img class="js-fancybox d-none" alt="Image Description" data-fancybox="fancyboxGallery6" data-src="/uploads/' . $folder . '/' . $images[$i] . '" data-caption="Ảnh   #' . $i . '" data-speed="700">';
+        $html .= '<img class="js-fancybox d-none" alt="Image Description" data-fancybox="fancyboxGallery6" data-src="' . DOMAIN_UPLOADS . '/' . $folder . '/' . $images[$i] . '" data-caption="Ảnh   #' . $i . '" data-speed="700">';
     }
 
     $html .= '</div>
@@ -384,4 +388,26 @@ function showNameTab($number)
 function calculateAverage($arr)
 {
     return round(array_sum($arr) / count($arr), 1);
+}
+
+// Hotel detail slug
+// Truyền vào kiểu ['hotel', 'slug-adsdsada-sd-sadsadasd-sadasd']
+// Return ra kiểu DOMAIN/hotel/slug-adsdsada-sd-sadsadasd-sadasd
+function returnDomain($arryUrl = [])
+{
+    $domain = DOMAIN_WEB;
+    foreach ($arryUrl as $url) {
+        $domain .= '/' . $url;
+    }
+    return $domain . '.html';
+}
+
+// URL CITY
+function returnUrlCity()
+{
+    $city_name = getValue('city_name', GET_STRING, GET_SESSION);
+    $city_id = getValue('city_id', GET_STRING, GET_SESSION);
+    $slug =  $city_id  . '-' . $city_name;
+    $url = returnDomain([$slug]);
+    return $url;
 }

@@ -141,10 +141,10 @@ if ($Query->submitForm()) {
         <?php endforeach; ?>
     </div>
     <?= $Form->file('Ảnh trang chủ khách sạn', 'hot_page_cover') ?>
-    <div id="previewImageBanner">
+    <div id="previewHotelBanner">
         <? if ($hot_page_cover) {
             echo '<div class="col-md-5 mb-3 position-relative" style="height: 200px; width: 200px;">
-                <img src="/uploads/hotel_cover/' . $hot_page_cover . '" class="img-fluid" style="object-fit: cover; height: 100%;">
+                <img src="' . DOMAIN_UPLOADS . '/hotel_cover/' . $hot_page_cover . '" class="img-fluid" style="object-fit: cover; height: 100%;">
                 </div>';
         } ?>
     </div>
@@ -175,7 +175,7 @@ if ($Query->submitForm()) {
     <script>
         // Khởi tạo preview cho tất cả các trường tải ảnh
         setupImagePreview('imageUpload', 'previewContainer');
-        setupImagePreview('hot_page_cover', 'previewImageBanner');
+        setupImagePreview('hot_page_cover', 'previewHotelBanner');
     </script>
     <script>
         document.querySelector('#hot_name').addEventListener('input', (e) => {

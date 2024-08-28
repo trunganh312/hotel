@@ -12,7 +12,7 @@ class GenerateForm
 
     function __construct()
     {
-        $this->path_theme_image =   '/cms/theme/image/';
+        $this->path_theme_image =   '/theme/image/';
     }
 
     /**

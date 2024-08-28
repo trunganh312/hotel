@@ -21,7 +21,7 @@ foreach ($rooms as $room) : ?>
             <div class="col-lg-5 col-xl-5">
                 <h4>Phòng: <?= $room['roo_name'] ?></h4>
                 <span class="font-size-17"><?= formatVND($room['roo_price']) ?> VNĐ</span>
-                <a class="btn btn-primary w-100 my-2 p-2 " href="<?= URL_VIEW ?>booking/index.php?room_id=<?= $room['roo_id'] ?>">Đặt ngay</a>
+                <a class="btn btn-primary w-100 my-2 p-2 " href="<?= DOMAIN_WEB_VIEW ?>booking/index.php?room_id=<?= $room['roo_id'] ?>">Đặt ngay</a>
                 <span>Mô tả: </span>
                 <div class="content my-2 text-gray-1">
                     <?= html_entity_decode($room['roo_description']) ?>

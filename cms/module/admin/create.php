@@ -68,7 +68,7 @@ if ($Query->submitForm()) {
             $data_new   =   $DB->query("SELECT * FROM admin WHERE adm_id = $admin_id")->getOne();
             $data_new['group']  =   $group_value;
             unset($data_new['adm_password']);
-            $Log->setDataNew($data_new)->setContent('Tạo mới tài khoản')->createLog('admin', $admin_id, LOG_CREATE);
+            // $Log->setDataNew($data_new)->setContent('Tạo mới tài khoản')->createLog('admin', $admin_id, LOG_CREATE);
 
             set_session_toastr();
             reload_parent_window();

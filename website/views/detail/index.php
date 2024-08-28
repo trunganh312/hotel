@@ -19,8 +19,8 @@ include('config_module.php');
     <main id="content">
         <?
         $arrBreadcrumbs = array(
-            'Trang chủ' => '/website',
-            $hotel['dis_name'] => '' . URL_VIEW . 'list/index.php?district=' . $hotel['dis_name'],
+            'Trang chủ' => '/',
+            $hotel['dis_name'] => '' . returnUrlCity() . '?district=' . $hotel['dis_name'],
             $hotel['hot_name'] => ''
         );
         echo showBreadcrumbs($arrBreadcrumbs);
@@ -68,13 +68,13 @@ include('config_module.php');
                     <div class="border border-color-7 rounded px-4 pt-4 pb-3 mb-5">
                         <div class="px-2 pt-2">
                             <a class="d-inline-block border rounded mb-4 overflow-hidden">
-                                <img class="img-fluid" src="/uploads/hotel_cover/<?= $hotel['hot_page_cover'] ?>" alt="Image-Description">
+                                <img class="img-fluid" src="<?= DOMAIN_UPLOADS ?>/hotel_cover/<?= $hotel['hot_page_cover'] ?>" alt="Image-Description">
                             </a>
                             <div class="d-flex align-items-center mb-2">
                                 <i class="flaticon-placeholder-1 font-size-25 text-primary mr-3 pr-1"></i>
                                 <h6 class="mb-0 font-size-14 text-gray-1">
                                     <a href="#">Khách sạn tốt nhất tại </a>
-                                    <a href="<?= URL_VIEW ?>list/index.php?district=<?= $hotel['dis_name'] ?>" class="text-primary"><?= $hotel['dis_name'] ?></a>
+                                    <a href="<?= returnUrlCity() ?>?district=<?= $hotel['dis_name'] ?>" class="text-primary"><?= $hotel['dis_name'] ?></a>
                                 </h6>
                             </div>
                             <div class="d-flex align-items-center mb-2">

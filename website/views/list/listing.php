@@ -25,7 +25,7 @@
             </ul>
         </div>
         <div class="mb-3">
-            <a href="index.php">Xóa bộ lọc</a>
+            <a href="<?= returnUrlCity() ?>">Xóa bộ lọc</a>
         </div>
         <div class="alert alert-primary" role="alert">
             Không có kết quả nào được tìm thấy, vui lòng thay đổi các tiêu chí tìm kiếm để có kết quả tốt hơn!
@@ -65,7 +65,7 @@
         <? if (!empty($filter)) : ?>
             <!-- Xóa bộ lọc -->
             <div class="mb-3">
-                <a href="index.php">Xóa bộ lọc</a>
+                <a href="<?= returnUrlCity() ?>">Xóa bộ lọc</a>
             </div>
         <? endif ?>
 

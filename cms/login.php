@@ -3,8 +3,8 @@ ob_start();
 session_start();
 
 $path_root      =   $_SERVER['DOCUMENT_ROOT'];
-$path_core      =   $path_root . '/core/';
-$path_cms       =   $path_root . '/cms/';
+$path_core      =    dirname($path_root, 1) . '/core/';
+$path_cms       =   $path_root . '/';
 
 require_once($path_core . 'env/ConfigEnv.php');
 require_once($path_core . 'config/constant_core.php');
@@ -15,34 +15,32 @@ require_once($path_core . 'classes/Database.php');
 require_once($path_core . 'model/Model.php');
 require_once($path_core . 'classes/GenerateQuery.php');
 require_once($path_cms . 'core/classes/Admin.php');
-                                
-$action     =	getValue("action", GET_STRING, GET_POST, "", 1);
+
+$action     =    getValue("action", GET_STRING, GET_POST, "", 1);
 if (isset($_SESSION["login_error"])) unset($_SESSION["login_error"]);
 
 $email      =   getValue("email", GET_STRING, GET_POST, "", 1);
 $password   =   getValue("password", GET_STRING, GET_POST, "", 1);
 
-if($action == 'submitform'){
-    
+if ($action == 'submitform') {
+
     $Admin  =   new Admin($email, $password);
-    if ($Admin->logged){
-		redirect_url('/cms/');
-	}
-    
+    if ($Admin->logged) {
+        redirect_url('/');
+    }
 } else {
-    
+
     $Admin  =   new Admin('', '', '');
     if ($Admin->logged) {
-        redirect_url('/cms/');
+        redirect_url('/');
     }
-    
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title><?=BRAND_NAME?> CMS</title>
+    <title><?= BRAND_NAME ?> CMS</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, initial-scale=1.0, user-scalable=no" id="viewport" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
@@ -53,12 +51,12 @@ if($action == 'submitform'){
 <body>
     <div class="limiter">
         <div class="container-login100">
-            <div class="login100-more" style="background-image: url('/cms/theme/image/bg-login.jpg');"></div>
+            <div class="login100-more" style="background-image: url('/theme/image/bg-login.jpg');"></div>
             <div class="wrap-login100 p-l-50 p-r-50 p-t-72 p-b-50">
                 <form method="post" action="" class="login100-form validate-form">
                     <div class="title-login">
                         <span class="login100-form-title p-b-59">
-                            <?=BRAND_DOMAIN?>
+                            <?= BRAND_DOMAIN ?>
                         </span>
                         <span class="login100-form-title p-b-59 bold-500">Đăng nhập tài khoản</span>
                     </div>
@@ -74,11 +72,11 @@ if($action == 'submitform'){
                     </div>
                     <?
                     if (isset($_SESSION['login_error'])) {
-                        ?>
+                    ?>
                         <div class="alert-validate">
                             <?= $_SESSION['login_error'] ?>
                         </div>
-                        <?
+                    <?
                     }
                     ?>
                     <div class="container-login100-form-btn">

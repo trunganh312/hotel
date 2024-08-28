@@ -49,7 +49,7 @@ $imageJson = json_encode($images);
     <?
     $Layout->header($page_title);
     ?>
-    <a href="/cms/module/room/list.php" class="ml-2">Quay lại</a>
+    <a href="/module/room/list.php" class="ml-2">Quay lại</a>
     <div class="container">
         <ul>
             <li>

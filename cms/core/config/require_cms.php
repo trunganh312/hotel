@@ -5,10 +5,11 @@ error_reporting(E_ALL);
 ob_start();
 
 $path_root      =   $_SERVER['DOCUMENT_ROOT'];
-$path_core      =   $path_root . '/core/';
-$path_cms_core  =   $path_root . '/cms/core/';
+$path_core      =    dirname($path_root, 1) . '/core/';
+$path_cms_core  =   $path_root . '/core/';
 
-require_once($path_core . '/env/ConfigEnv.php');
+
+require_once($path_core . 'env/ConfigEnv.php');
 include_once($path_core . 'config/constant_core.php');
 include_once($path_cms_core . 'config/constant_cms.php');
 require_once($path_core . 'function/function.php');

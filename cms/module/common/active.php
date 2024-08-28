@@ -18,6 +18,14 @@ switch ($arr_fields[0]) {
         $table = 'module';
         $field_id = 'mod_id';
         break;
+    case 'adm':
+        $table = 'admin';
+        $field_id = 'adm_id';
+        break;
+    case 'modf':
+        $table = 'module_file';
+        $field_id = 'modf_id';
+        break;
     case 'hot':
         $table = 'hotel';
         $field_id = 'hot_id';

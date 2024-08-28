@@ -102,7 +102,7 @@ if ($Query->submitForm()) {
     <div id="previewImageCity" class="row text-center overflow-hidden" style="gap: 30px;">
         <? if ($cit_image) {
             echo '<div class="col-md-5 mb-3 position-relative" style="height: 200px; width: 200px;">
-                <img src="/uploads/city/' . $cit_image . '" class="img-fluid" style="object-fit: cover; height: 100%;">
+                <img src="' . DOMAIN_UPLOADS . '/city/' . $cit_image . '" class="img-fluid" style="object-fit: cover; height: 100%;">
                 </div>';
         } ?>
     </div>

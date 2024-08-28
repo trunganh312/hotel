@@ -37,14 +37,14 @@ async function initMap(hotels, hotelCurrent) {
       content: `
         <div class="card transition-3d-hover shadow-hover-2 h-100 w-100">
                         <div class="position-relative">
-                            <a href="'.URL_VIEW.'detail/${hotel.hot_slug}" class="d-block gradient-overlay-half-bg-gradient-v5">
-                                <img class="card-img-top" src="/uploads/hotel_cover/${hotel.hot_page_cover}" alt="Image Description" />
+                            <a href="http://cityvisit.local/hotel/${hotel.hot_slug}.html" class="d-block gradient-overlay-half-bg-gradient-v5">
+                                <img class="card-img-top" src="http://uploads.cityvisit.local/hotel_cover/${hotel.hot_page_cover}" alt="Image Description" />
                             </a>
                         </div>
                         <div class="card-body px-4 pt-2 pb-3" style="display: flex;flex-direction: column;
                             ">
                             <div style="flex: 1">
-                            <a href="'.URL_VIEW.'detail/${hotel.hot_slug}" class="card-title font-size-17 font-weight-medium text-dark">${hotel.hot_name}</a>
+                            <a href="http://cityvisit.local/hotel/${hotel.hot_slug}.html" class="card-title font-size-17 font-weight-medium text-dark">${hotel.hot_name}</a>
                             </div>
                             <div class="mt-2">
                                 <span class="mr-1 font-size-14 text-gray-1">Chỉ từ</span>

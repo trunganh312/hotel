@@ -21,7 +21,7 @@ class Layout
      */
     function __construct()
     {
-        $this->path_theme   =   base_url()  . 'cityvisit/cms/theme/';
+        $this->path_theme   =   base_url()  . 'theme/';
     }
 
     /**
@@ -88,10 +88,10 @@ class Layout
      */
     function getFavicon()
     {
-        $favicon    =   'cms/favicon.png';
+        $favicon    =   'favicon.png';
 
         if (is_dev()) {
-            $favicon    =   'cms/theme/image/favicon.ico';
+            $favicon    =   'theme/image/favicon.ico';
         }
 
         return '/' . $favicon;
@@ -161,8 +161,29 @@ class Layout
         global  $cfg_theme_version_js;
 
         $js =   [
-            'jquery', 'jquery-ui', 'bootstrap', 'jeditable', 'moment', 'inputmask', 'daterangepicker', 'countdown', 'summernote', 'select2', 'toastr', 'customfile',
-            'adminlte', 'thickbox', 'jquery-autocomplete', 'table', 'main', 'waitMe.min', 'upload', 'previewImage', 'jquery.uploader.min', 'slug', 'quill'
+            'jquery',
+            'jquery-ui',
+            'bootstrap',
+            'jeditable',
+            'moment',
+            'inputmask',
+            'daterangepicker',
+            'countdown',
+            'summernote',
+            'select2',
+            'toastr',
+            'customfile',
+            'adminlte',
+            'thickbox',
+            'jquery-autocomplete',
+            'table',
+            'main',
+            'waitMe.min',
+            'upload',
+            'previewImage',
+            'jquery.uploader.min',
+            'slug',
+            'quill'
         ];
 
         $footer =   '';
@@ -202,7 +223,7 @@ class Layout
 
         echo    '<div class="wrapper">';
         if (!$this->popup) {
-            include($_SERVER['DOCUMENT_ROOT'] . '/cms/layout/inc_header.php');
+            include($_SERVER['DOCUMENT_ROOT'] . '/layout/inc_header.php');
         }
 
         echo    '<div class="content-wrapper">';

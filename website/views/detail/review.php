@@ -1,6 +1,6 @@
 <script src="http://code.jquery.com/jquery-1.11.3.min.js" charset="utf-8"></script>
 
-<? if (count($reviews) > 0) : ?>
+<? if ($hotel['total_reviews'] > 0) : ?>
     <div class="border-bottom py-4">
         <h5 id="scroll-reviews" class="font-size-21 font-weight-bold text-dark mb-4">
             Đánh giá
@@ -10,28 +10,28 @@
                 <div class="border rounded flex-content-center py-5 border-width-2">
                     <div class="text-center">
                         <h2 class="font-size-50 font-weight-bold text-primary mb-0 text-lh-sm">
-                            <?= $averageRating ?>
+                            <?= $hotel['average_rating'] ?>
                         </h2>
-                        <div class="text-dark mb-3">Dựa trên <?= $totalReviews ?> đánh giá</div>
+                        <div class="text-dark mb-3">Dựa trên <?= $hotel['total_reviews'] ?> đánh giá</div>
                         <div class="text-gray-1">Cam kết 100% các đánh giá đều được đánh giá bởi các khách hàng!</div>
                     </div>
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="row">
-                    <?= review($averages) ?>
+                    <?= review($hotel['averages']) ?>
                 </div>
             </div>
         </div>
     </div>
 <? endif; ?>
-<? if (count($reviews) <= 0) : ?>
+<? if ($hotel['total_reviews'] <= 0) : ?>
     <div class="p-5 d-flex justify-content-center border">Không có đánh giá nào</div>
 <? endif; ?>
 <div class="py-4">
     <div class="media flex-column flex-md-row  align-items-start">
         <div class="media-body  text-left">
-            <? foreach ($reviews as $review): ?>
+            <? foreach ($hotel['reviews'] as $review): ?>
                 <div class="mb-4">
                     <p class="font-weight-bold text-gray-3 mb-0">
                         <a><?= $review['rev_name'] != null  ? $review['rev_name'] : 'Người dùng ẩn danh' ?></a> -

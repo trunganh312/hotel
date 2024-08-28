@@ -11,6 +11,7 @@ $has_view_log   =   $Admin->hasPermission('admin_view_log');
 
 //Biến sử dụng cho TAB_SELECT
 $adm_group  =   $list_group_admin;
+
 /** --- End of Khai báo một số biến cơ bản --- **/
 
 /** --- DataTable --- **/
@@ -64,6 +65,8 @@ foreach ($data as $row) {
         $arr_admin_group[$row['adm_id']]    .=  ', ' . $row['adgr_name'];
     }
 }
+
+
 
 ?>
 <!DOCTYPE html>

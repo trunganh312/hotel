@@ -4,13 +4,13 @@ $(document).ready(function () {
     e.preventDefault();
     $.ajax({
       type: "POST",
-      url: "/website/ajax/booking.php", // URL xử lý form, file PHP
+      url: "/ajax/booking.php", // URL xử lý form, file PHP
       data: $(this).serialize(), // Lấy tất cả dữ liệu từ form
       success: function (response) {
         const result = JSON.parse(response);
         // Hiển thị alert sau khi xử lý thành công
         alert(result.message);
-        window.location.href = "/website/views/list/index.php";
+        window.location.href = "/views/list/index.php";
       },
       error: function () {
         // Hiển thị thông báo lỗi nếu có
@@ -26,7 +26,7 @@ $(document).ready(function () {
     e.preventDefault();
     $.ajax({
       type: "POST",
-      url: "/website/ajax/review.php", // URL xử lý form, file PHP
+      url: "/ajax/review.php", // URL xử lý form, file PHP
       data: $(this).serialize(), // Lấy tất cả dữ liệu từ form
       success: function (response) {
         const result = JSON.parse(response);

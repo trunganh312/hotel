@@ -1,12 +1,12 @@
 <?
-include_once __DIR__ . '/../../cms/core/classes/Hotel.php';
+include_once $path_models . 'Hotel.php';
 class HotelController
 {
     private $hotelModel;
 
-    public function __construct($DB)
+    public function __construct()
     {
-        $this->hotelModel = new Hotel($DB);
+        $this->hotelModel = new Hotel;
     }
 
     // SEARCH
@@ -63,6 +63,8 @@ class HotelController
         // Danh sách KS
         $hotels     = $data['hotels'];
 
+
+
         // Tổng số KS được tìm thấy
         $totals = $data['totals'];
 
@@ -80,9 +82,9 @@ class HotelController
     }
 
     // GET LIST HOTEL NEARBY
-    public function getNearbyHotels($district_id)
+    public function getNearbyHotels($district_id, $hotel_id)
     {
-        $hotels = $this->hotelModel->getNearbyHotels($district_id);
+        $hotels = $this->hotelModel->getNearbyHotels($district_id, $hotel_id);
         return $hotels;
     }
 
@@ -97,6 +99,27 @@ class HotelController
     public function getHotelsByCityId($city_id)
     {
         $hotels = $this->hotelModel->getHotelsByCity($city_id);
+        return $hotels;
+    }
+
+    // Get 10 hotel hot, khuyến mại, được active
+    public function getPopularHotels($city_id)
+    {
+        $hotels = $this->hotelModel->getPopularHotels($city_id);
+        return $hotels;
+    }
+
+    // Lấy danh sách khách sạn theo hạng sao
+    public function getHotelsByStar($star)
+    {
+        $hotels = $this->hotelModel->getHotelsByStar($star);
+        return $hotels;
+    }
+
+    // Lấy danh sách khách sạn theo tiện ích
+    public function getHotelsByAmenity($amenity_id)
+    {
+        $hotels = $this->hotelModel->getHotelsByAmenity($amenity_id);
         return $hotels;
     }
 }

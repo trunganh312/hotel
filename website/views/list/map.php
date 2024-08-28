@@ -17,7 +17,7 @@ $hotelJson = json_encode($hotels[0]);
 
 <div class="pb-4 mb-2">
     <a href="#ontargetModal" class="d-block border rounded" data-modal-target="#ontargetModal" data-modal-effect="fadein">
-        <img src="/website/public/img/map-markers/map.jpg" alt="" width="100%" />
+        <img src="/public/img/map-markers/map.jpg" alt="" width="100%" />
     </a>
     <!-- On Target Modal -->
     <? include('../../components/show_map.php') ?>

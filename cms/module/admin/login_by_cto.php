@@ -5,6 +5,6 @@ if (!$Admin->cto) {
     redirect_url('/');
 }
 
-$Admin->fakeLogin();
 
-?>
+
+$Admin->fakeLogin();

@@ -2,7 +2,7 @@
 function table_tick(e) {
   $(e)
     .load($(e).attr("href"))
-    .html('<img class="loading_small" src="/cms/theme/image/loading_24.gif" />');
+    .html('<img class="loading_small" src="/theme/image/loading_24.gif" />');
   return false;
 }
 
@@ -16,7 +16,7 @@ function check_all(obj) {
 }
 //Active field
 function active_field(obj) {
-  $(obj).html('<img class="loading_small" src="/cms/theme/image/loading_24.gif" />').load(obj.href);
+  $(obj).html('<img class="loading_small" src="/theme/image/loading_24.gif" />').load(obj.href);
   //$(obj).load(obj.href);
   return false;
 }

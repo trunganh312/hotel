@@ -16,7 +16,7 @@ class DataTable
     private $array_field_sum    =   []; //Ngoài tính tổng số bản ghi ra thì có 1 số trường hợp DS cần tính tổng theo field, VD tổng tiền
     private $edit_file_name     =   'edit.php';
     private $delete_file_name   =   'delete.php';
-    private $active_file_name   =   '/cms/module/common/active.php';
+    private $active_file_name   =   '/module/common/active.php';
     private $array_field_active =   []; //Có nhiều module, danh sách có lựa chọn active ở nhiều file, nhiều trường khác nhau
     private $symbol_query       =   '?';    //Ký tự nối link Edit và ID...
     private $path_image         =   ''; //Đường dẫn lưu ảnh
@@ -499,13 +499,13 @@ class DataTable
                     $arr['query']   =   false;
                 }
 
-                //Tùy theo các kiểu dữ liệu mà sinh ra các html và câu query search khác nhau
+                // Tùy theo các kiểu dữ liệu mà sinh ra các html và câu query search khác nhau
                 switch ($arr['type']) {
                     case TAB_TEXT:
-                        //Lấy giá trị tìm kiếm
+                        // Lấy giá trị tìm kiếm
                         $search_value   =   trim(getValue($field, 'str', 'GET', '', 1));
 
-                        //Nếu input search này có cho phép tham gia trực tiếp vào câu query và có giá trị khác rỗng
+                        // Nếu input search này có cho phép tham gia trực tiếp vào câu query và có giá trị khác rỗng
                         if ($arr['query'] == true && $search_value != '') {
                             if (isset($this->field_multi_search[$field]) && !empty($this->field_multi_search[$field])) {
                                 //Nếu có thể search từ nhiều column thì search OR

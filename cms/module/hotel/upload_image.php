@@ -44,7 +44,7 @@ $imageJson = json_encode($images);
     <?
     $Layout->header($page_title);
     ?>
-    <a href="/cms/module/hotel/list.php" class="ml-2">Quay lại</a>
+    <a href="/module/hotel/list.php" class="ml-2">Quay lại</a>
     <div class="container">
         <ul>
             <?=
@@ -63,7 +63,7 @@ $imageJson = json_encode($images);
         const imageArr = images.map(img => {
             return {
                 name: img.hti_type_image,
-                url: `/uploads/hotel_images/${img.hti_name}`
+                url: `http://uploads.cityvisit.local/hotel_images/${img.hti_name}`
             }
         })
         let ajaxConfig = {

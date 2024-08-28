@@ -1,6 +1,6 @@
 <?
 //Các biến đường dẫn theme
-$cfg_path_theme         =   '/cms/theme/';
+$cfg_path_theme         =   '/theme/';
 $cfg_path_theme_image   =   $cfg_path_theme . 'image/';
 $cfg_url_fontawesome    =   'https://fontawesome.com/v5/search';
 
@@ -17,7 +17,7 @@ $cfg_payment_method_spend   =   [
     PAYMENT_VISA    =>  'Visa'
 ];
 
-/** --- Các kiểu trường dữ liệu lưu log --- **/                                
+/** --- Các kiểu trường dữ liệu lưu log --- **/
 $cfg_field_type =   [
     FIELD_TEXT      =>  'Text',
     FIELD_DATABASE  =>  'Database',
@@ -67,5 +67,3 @@ $cms_color  =   [
     10  =>  '#ff2000',
     11  =>  '#ffcf00'
 ];
-
-?>

@@ -293,7 +293,7 @@ function check_form() {
 //Set editable cho field text
 function set_editable(e, url, data, type) {
   e.editable(url, {
-    indicator: "<img src='/cms/theme/image/loading_fb.gif' />",
+    indicator: "<img src='/theme/image/loading_fb.gif' />",
     type: type ? type : "text",
     submit: "Lưu",
     cancel: "Hủy",
